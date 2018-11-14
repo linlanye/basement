@@ -1,0 +1,30 @@
+{
+    "name": "basement",
+    "description": "the new php7 framework",
+    "type": "project",
+    "keywords": [
+        "framework",
+        "lin",
+        "ORM"
+    ],
+    "homepage": "https://github.com/linlanye/basement",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "linlanye",
+            "email": "linlanye@sina.cn"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "basement\\":"basement"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+
+}
