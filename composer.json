@@ -11,13 +11,14 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "linlanye",
+            "name": "林澜叶 (linlanye)",
             "email": "linlanye@sina.cn"
         }
     ],
     "require": {
         "php": ">=7.2.0"
     },
+    "minimum-stability":"stable",
     "autoload": {
         "psr-4": {
             "basement\\":"basement"
