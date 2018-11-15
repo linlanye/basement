@@ -26,6 +26,11 @@
     },
     "config": {
         "preferred-install": "dist"
+    },
+    "extra": {
+        "installer-paths": {
+            "{$name}": ["vendor"]
+        }
     }
 
 }
