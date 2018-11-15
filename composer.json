@@ -1,11 +1,11 @@
 {
     "name": "basement/basement",
-    "description": "the new php7 framework",
-    "type": "project",
+    "description": "php常用功能组件通用化",
     "keywords": [
-        "framework",
-        "lin",
-        "ORM"
+        "basement",
+        "general",
+        "components",
+        "linlanye"
     ],
     "homepage": "https://github.com/linlanye/basement",
     "license": "MIT",
@@ -16,13 +16,14 @@
         }
     ],
     "require": {
-        "php": ">=7.2.0"
+        "php": ">=7.2.0",
+        "composer/installers": "~1.0"
     },
     "minimum-stability":"stable",
     "autoload": {
         "psr-4": {
-            "basement\\":"basement"
-        }
+            "basement\\":"basement/"
+         }
     },
     "config": {
         "preferred-install": "dist"
