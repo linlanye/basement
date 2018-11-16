@@ -31,11 +31,7 @@
         }
     },
     "extra": {
-        "installer-paths": {
-            "wp-content/plugins/{$name}/": [
-                "type:wordpress-plugin"
-            ]
-        }
+        "class": "basement\\build\\Installer"
     },
     "config": {
         "preferred-install": "dist",
