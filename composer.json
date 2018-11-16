@@ -29,7 +29,11 @@
     "autoload": {
         "psr-4": {
             "basement\\": "basement/"
-        }
+        },
+        "files": [
+            "build/Linker.php",
+            "build/Installer.php"
+        ]
     },
     "extra": {
         "class": "basement\\build\\Installer"
