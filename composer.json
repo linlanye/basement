@@ -1,6 +1,6 @@
 {
     "name": "basement/basement",
-    "description": "php常用功能组件通用化",
+    "description": "php常用web功能组件通用化",
     "keywords": [
         "basement",
         "general",
@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.2.0",
-        "composer-plugin-api": "^1.0"
+        "composer/installers": "~1.0"
     },
     "support": {
         "email": "linlanye@sina.cn",
@@ -27,10 +27,10 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "basement\\": "basement/"
+            "basement\\": "basement/basement/"
         },
         "files": [
-            "build/Linker.php"
+            "Linker.php"
         ]
     },
     "config": {
