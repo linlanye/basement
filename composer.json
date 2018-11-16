@@ -30,7 +30,7 @@
     },
     "extra": {
         "installer-paths": {
-            "{$name}": ["vendor"]
+            "vendor/{$name}/": ["basement"]
         }
     }
 
