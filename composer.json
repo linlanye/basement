@@ -16,12 +16,30 @@
         }
     ],
     "require": {
-        "php": ">=7.2.0"
+        "php": "^7.2.0",
+        "composer-plugin-api": "^1.0"
+    },
+    "support": {
+        "email": "linlanye@sina.cn",
+        "issues": "https://github.com/linlanye/basement/issues",
+        "docs": "https://github.com/linlanye/basement-docs"
     },
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "basement\\": "basement/"
         }
+    },
+    "extra": {
+        "installer-paths": {
+            "wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ]
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
     }
 }
