@@ -16,13 +16,12 @@
         }
     ],
     "require": {
-        "php": ">=7.2.0",
+        "php": ">=7.2.0"
     },
-    "minimum-stability":"stable",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "basement\\":"basement/"
-         }
-    },
-
+            "basement\\": "basement/"
+        }
+    }
 }
