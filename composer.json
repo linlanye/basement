@@ -23,7 +23,6 @@
         "issues": "https://github.com/linlanye/basement/issues",
         "docs": "https://github.com/linlanye/basement-docs"
     },
-    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "basement\\": "basement/basement/"
