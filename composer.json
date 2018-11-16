@@ -1,7 +1,6 @@
 {
     "name": "basement/basement",
     "description": "php常用功能组件通用化",
-    "type": "composer-plugin",
     "keywords": [
         "basement",
         "general",
@@ -31,12 +30,8 @@
             "basement\\": "basement/"
         },
         "files": [
-            "build/Linker.php",
-            "build/Installer.php"
+            "build/Linker.php"
         ]
-    },
-    "extra": {
-        "class": "basement\\build\\Installer"
     },
     "config": {
         "preferred-install": "dist",
