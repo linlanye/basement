@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2016-11-04 15:07:30
- * @Modified time:      2018-08-29 16:58:19
+ * @Modified time:      2018-11-19 14:23:47
  * @Description:        组件链接器，在根空间使用
  */
 class Linker
@@ -121,6 +121,15 @@ class Linker
     public static function getAll(): array
     {
         return self::$lists;
+    }
+
+    //获取原生支持的组件名称
+    public static function getBasements(): array
+    {
+        return [
+            'Config', 'Debug', 'Event', 'Exception', 'Lang', 'Log', 'Request',
+            'ServerFile', 'ServerKV', 'ServerLocal', 'ServerQueue', 'ServerSQL',
+        ];
     }
 
     //移除非核心组件
