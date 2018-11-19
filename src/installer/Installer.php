@@ -3,10 +3,10 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2018-11-19 15:52:58
- * @Modified time:      2018-11-19 16:19:40
+ * @Modified time:      2018-11-19 16:47:28
  * @Description:        composer安装器
  */
-namespace basement;
+namespace basement\installer;
 
 use Composer\Composer;
 use Composer\Installer\LibraryInstaller;
