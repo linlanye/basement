@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2018-11-19 15:52:58
- * @Modified time:      2018-11-19 19:47:28
+ * @Modified time:      2018-11-19 20:04:06
  * @Description:        composer安装器
  */
 namespace basement\installer;
@@ -17,9 +17,11 @@ use Composer\Repository\InstalledRepositoryInterface;
 
 class Installer implements PluginInterface
 {
+    private $_io;
     public function activate(Composer $composer, IOInterface $io)
     {
-        var_dump($io);
+        var_dump($this->io);
+        $this->_io = $io;
         $composer->getInstallationManager()->addInstaller(new BasementInstaller($io, $composer));
     }
 }
@@ -31,9 +33,9 @@ class BasementInstaller extends LibraryInstaller
         parent::install($repo, $package);
         $Linker  = $this->getInstallPath($package) . '/src/installer/Linker.php';
         $content = "<?php require $Linker;";
-        $this->io->notice($content);
-        $this->io->notice($this->getPackageBasePath($package) . DIRECTORY_SEPARATOR . 'linker.php');
-        $this->io->notice(file_put_contents($this->getPackageBasePath($package) . DIRECTORY_SEPARATOR . 'linker.php', $content));
+        $this->_io->warning($content);
+        $this->_io->warning($this->getPackageBasePath($package) . DIRECTORY_SEPARATOR . 'linker.php');
+        $this->_io->warning(file_put_contents($this->getPackageBasePath($package) . DIRECTORY_SEPARATOR . 'linker.php', $content));
     }
     public function uninstall(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
