@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2018-11-19 15:52:58
- * @Modified time:      2018-11-19 20:14:07
+ * @Modified time:      2018-11-19 20:26:53
  * @Description:        composer安装器
  */
 namespace basement\installer;
@@ -40,5 +40,8 @@ class BasementInstaller extends LibraryInstaller
         $require_file = $this->getPackageBasePath($package) . DIRECTORY_SEPARATOR . 'linker.php';
         $this->filesystem->unlink($require_file); //删除require文件
     }
-
+    public function supports($packageType)
+    {
+        return 'basement-basement' === $packageType;
+    }
 }
