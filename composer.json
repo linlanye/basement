@@ -1,7 +1,7 @@
 {
     "name": "basement/basement",
     "description": "php常用web功能组件通用化",
-    "type": "basement-basement",
+    "type": "composer-plugin",
     "keywords": [
         "basement",
         "general",
