@@ -1,7 +1,6 @@
 {
     "name": "basement/basement",
     "description": "php常用web功能组件通用化",
-    "type": "basement-installer",
     "keywords": [
         "basement",
         "general",
@@ -18,7 +17,6 @@
     ],
     "require": {
         "php": "^7.2.0",
-        "composer-plugin-api": "^1.0"
     },
     "support": {
         "email": "linlanye@sina.cn",
@@ -27,15 +25,11 @@
     },
     "autoload": {
         "psr-4": {
-            "basement\\": "src/"
+            "basement\\": "src"
         }
-    },
-    "extra":{
-        "class": "basement\\installer\\Installer"
     },
     "config": {
         "preferred-install": "dist",
-        "sort-packages": true,
         "optimize-autoloader": true
     }
 }
