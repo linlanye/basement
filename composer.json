@@ -16,7 +16,8 @@
         }
     ],
     "require": {
-        "php": "^7.2.0"
+        "php": "^7.2.0",
+        "composer-plugin-api": "^1.0"
     },
     "support": {
         "email": "linlanye@sina.cn",
@@ -26,10 +27,10 @@
     "autoload": {
         "psr-4": {
             "basement\\": "src/"
-        },
-        "files": [
-            "Linker.php"
-        ]
+        }
+    },
+    "extra":{
+        "class": "basement\\installer\\Installer"
     },
     "config": {
         "preferred-install": "dist",
