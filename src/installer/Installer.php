@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2018-11-19 15:52:58
- * @Modified time:      2018-11-19 20:37:47
+ * @Modified time:      2018-11-19 21:16:05
  * @Description:        composer安装器
  */
 namespace basement\installer;
@@ -43,6 +43,6 @@ class BasementInstaller extends LibraryInstaller
     public function supports($packageType)
     {
         var_dump($packageType);
-        return 'basement-basement' === $packageType;
+        return 'basement-installer' === $packageType;
     }
 }
