@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2017-06-20 11:53:48
- * @Modified time:      2018-11-19 14:43:35
+ * @Modified time:      2018-11-20 11:03:40
  * @Description:        配置类规范，建议实现本类时不调用任何basement类，防止出现间接递归
  */
 namespace basement;
@@ -36,12 +36,12 @@ trait Config
     {}
 
     /**
-     * 向已有的配置合并内容，若配置内容不存在，则等效于set方法
+     * 向已有的配置替换内容，若配置内容不存在，则等效于set方法
      * @param  string $name        配置名
-     * @param  array  $content     合并内容
-     * @param  bool   $isRecursive 是否递归合并，默认否
-     * @return bool   是否合并成功
+     * @param  array  $content     替换内容
+     * @param  bool   $isRecursive 是否递归替换，默认否
+     * @return bool   是否替换成功
      */
-    public static function merge(string $name, array $content, bool $isRecursive = false): bool
+    public static function replace(string $name, array $content, bool $isRecursive = false): bool
     {}
 }
