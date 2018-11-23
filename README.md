@@ -1,5 +1,8 @@
 # Basement
-	当前版本1.0, 要求php版本7.2及以上
+[![Latest Stable Version](https://poser.pugx.org/basement/basement/v/stable)](https://packagist.org/packages/basement/basement)
+[![Latest Unstable Version](https://poser.pugx.org/basement/basement/v/unstable)](https://packagist.org/packages/basement/basement)
+
+	版本1.0, 要求php>=7.2
 
 ### 介绍
 
