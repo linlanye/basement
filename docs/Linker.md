@@ -66,7 +66,6 @@ Linker::forceRemove('component_name'); //返回bool
 
 #### 方法列表
 ~~~php
-<?php
 //访问标准组件的方法，方法名即为组件名，参数为是否返回实例
 public static function Config(bool $forInstance = false)
 public static function Debug(bool $forInstance = false)
@@ -100,8 +99,6 @@ params:
 	array  $args           只含一个bool参数，为是否返回实例，是则返回该组件的实例，否则返回该组件类名
 return:
 	string|object 类名或实例
-
-示例: Linker::component_name()获得类名，Linker::component_name(true)获得实例
 ```
 
 **register()**: 注册组件
