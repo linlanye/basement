@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2016-11-04 15:07:30
- * @Modified time:      2018-11-19 14:23:47
+ * @Modified time:      2018-12-05 13:20:41
  * @Description:        组件链接器，在根空间使用
  */
 class Linker
@@ -68,38 +68,12 @@ class Linker
         return self::get($method, $args);
     }
     /**
-     * 获得具体组件类
-     * @param  string $component    组件名称
-     * @param  bool   $forInstance  是否返回实例
-     * @return object|string        返回类名或实例
-     */
-    public static function get(string $component, bool $forInstance = false)
-    {
-        //读取具体组件
-        $component = strtoupper($component);
-        if (array_key_exists($component, self::$lists)) {
-            $Class = self::$lists[$component][0];
-            if ($forInstance) {
-                if (!is_object($Class)) {
-                    $Class = new $Class;
-                }
-            } else {
-                if (is_object($Class)) {
-                    $Class = get_class($Class);
-                }
-            }
-            return $Class;
-        }
-        throw new Exception("$component does not exist!"); //没有注册则抛出异常
-
-    }
-    /**
      * 注册组件
-     * @param  array   $array         键名为组件名，键值为具体类名或实例
-     * @param  bool $notOverride      是否不可覆盖(也即是否核心组件)
+     * @param  array $array  键名为组件名，键值为具体类名或实例
+     * @param  bool  $isCore 是否核心组件（也即是否不可覆盖）
      * @return bool
      */
-    public static function register(array $array, bool $notOverride = false): bool
+    public static function register(array $array, bool $isCore = false): bool
     {
         //写入组件表
         foreach ($array as $component => $class) {
@@ -107,7 +81,7 @@ class Linker
             if (array_key_exists($component, self::$lists) && self::$lists[$component][1]) {
                 throw new Exception($component . 'can not be overridden!'); //核心组件不可被替换
             }
-            self::$lists[$component] = [$class, $notOverride]; //写入组件列表
+            self::$lists[$component] = [$class, $isCore]; //写入组件列表
         }
         return true;
     }
@@ -117,7 +91,7 @@ class Linker
         $component = strtoupper($component);
         return array_key_exists($component, self::$lists);
     }
-    //获取所有组件
+    //获取所有已注册组件
     public static function getAll(): array
     {
         return self::$lists;
@@ -157,4 +131,29 @@ class Linker
         return false;
     }
 
+    /**
+     * 获得具体组件类
+     * @param  string $component    组件名称
+     * @param  bool   $forInstance  是否返回实例
+     * @return object|string        返回类名或实例
+     */
+    protected static function get(string $component, bool $forInstance = false)
+    {
+        //读取具体组件
+        $component = strtoupper($component);
+        if (array_key_exists($component, self::$lists)) {
+            $Class = self::$lists[$component][0];
+            if ($forInstance) {
+                if (!is_object($Class)) {
+                    $Class = new $Class;
+                }
+            } else {
+                if (is_object($Class)) {
+                    $Class = get_class($Class);
+                }
+            }
+            return $Class;
+        }
+        throw new Exception("$component does not exist!"); //没有注册则抛出异常
+    }
 }
