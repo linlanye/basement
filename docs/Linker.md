@@ -95,10 +95,9 @@ public static function forceRemove(string $component)
 
 **__callStatic()**: 用于动态访问组件
 ```php
-param1 string $component_name 组件名
-param2 array  $args 		  只含一个bool参数，为是否返回实例，是则返回该组件的实例，否则返回该组件类名
-
-return string|object          类名或实例
+@param1: string $component_name 组件名
+@param2: array  $args 		    只含一个bool参数，为是否返回实例，是则返回该组件的实例，否则返回该组件类名
+@return: string|object          类名或实例
 
 示例： Linker::component_name()获得类名。Linker::component_name(true)获得实例
 ```
