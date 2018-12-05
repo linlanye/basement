@@ -1,4 +1,4 @@
-#Linker
+# Linker
 namepsace: `\`
 
 为全静态方法的类，注册在根命名空间使用，为组件访问提供统一调度。
@@ -7,7 +7,7 @@ namepsace: `\`
 
 
 
-##使用方式
+## 使用方式
 
 1.注册
 
@@ -62,9 +62,9 @@ Linker::forceRemove('component_name'); //返回bool
 
 
 
-##API
+## API
 
-####方法列表
+#### 方法列表
 ~~~php
 <?php
 //访问标准组件的方法，方法名即为组件名，参数为是否返回实例
@@ -91,7 +91,7 @@ public static function remove(string $component)
 public static function forceRemove(string $component)
 ~~~
 
-####详细说明
+#### 详细说明
 
 **__callStatic()**: 用于动态访问组件
 ```php
