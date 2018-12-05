@@ -20,7 +20,7 @@
     },
     "support": {
         "email": "linlanye@sina.cn",
-        "issues": "https://github.com/linlanye/basement/issues",
+        "issues": "https://github.com/linlanye/basement/issues"
     },
     "autoload": {
         "psr-4": {
