@@ -13,23 +13,22 @@ namepsace: `basement`
 <?php
 //先注册
 Linker::register([
-	'Event' => 'your_config_class',
+	'Event' => 'your_event_class',
 ]);
 
-//设置
-Linker::Config()::set('config_name', ['content']); //返回bool
+//绑定事件
+Linker::Event()::on('event_name', function(){
+	//事件执行代码
+}); //返回bool
 
-//读取
-Linker::Config()::get('config_name'); //返回数组
+//解绑事件
+Linker::Event()::off('event_name'); //返回bool
 
-//是否存在
-Linker::Config()::exists('config_name'); //返回bool
+//事件是否绑定
+Linker::Event()::exists('event_name'); //返回bool
 
-//替换配置
-Linker::Config()::replace('config_name', ['content']); //返回bool
-
-//递归替换配置
-Linker::Config()::replace('config_name', ['content'], true); //返回bool
+//触发事件
+Linker::Event()::trigger('event_name', $param_1, ... , $param_n); //绑定事件的返回值
 ~~~
 
 ---
@@ -40,45 +39,45 @@ Linker::Config()::replace('config_name', ['content'], true); //返回bool
 
 #### 列表
 ~~~php
-public static function get(string $name):  ? array
-public static function set(string $name, array $content) : bool
-public static function exists(string $name): bool
-public static function replace(string $name, array $content, bool $isRecursive = false): bool
+public static function on(string $event, callable $Callback, int $times = 0): bool
+public static function off(string $event): bool
+public static function exists(string $event): bool
+public static function trigger(string $event, ...$params)
 ~~~
 
 #### 详细说明
 
-**::get()**: 获得配置
+**::on()**: 绑定事件
 ```php
 params:
-	string $name 配置名
+	string   $event    事件名
+	callable $Callback 绑定事件的逻辑代码，用回调形式实现
+	int      $times=0  事件可执行的次数
 return:
-	array|null 失败或不存在则返回null
+	bool 是否成功
 ```
 
-**::set()**: 设置配置
+**::off()**: 解绑事件
 ```php
 params:
-	string $name    配置名
-	array  $content 配置内容
+	string $event 事件名
 return:
-	bool 是否设置成功
+	bool 是否成功
 ```
 
-**::exists()**: 配置是否存在
+**::exists()**: 事件是否存在
 ```php
 params:
-	string $name 配置名
+	string $event 事件名
 return:
 	bool 是否存在
 ```
 
-**::replace()**: 替换配置
+**::trigger()**: 触发事件，并可以使用不定参传入绑定事件的入参
 ```php
 params:
-	string $name              配置名
-	array  $content           用于替换的新的配置内容
-	bool   $isRecursive=false 是否递归替换，替换模式参考array_replace和array_replace_recursive函数
+	string $event  事件名
+	array  $params 触发该事件时的入参，用php不定参形式传入
 return:
-	bool 是否替换成功
+	mixed|null 绑定事件的返回值，失败或不存在则返回null
 ```
