@@ -2,34 +2,64 @@
 [![Latest Stable Version](https://poser.pugx.org/basement/basement/v/stable)](https://packagist.org/packages/basement/basement)
 [![Latest Unstable Version](https://poser.pugx.org/basement/basement/v/unstable)](https://packagist.org/packages/basement/basement)
 
-	版本1.0, 要求php>=7.2
+> requires `php>=7.2` and `composer`
 
-### 介绍
+## 介绍
+
+Basement的目的是让常用的php组件功能可以通用化使用，并且可以实现程序解耦，是由一套**trait**和一个类**Linker**共同构成。
+
+* 这一套**trait**类似扩展了的接口，对最常用的类和方法进行了非常严格的规定，在依靠php语法无法约束的场景，会有一定的文字约束甚至逻辑代码用于提醒实现者严格按照规定实现类。用**trait**的原因是对有些方法需要用一定的代码约束，同时php是单继承，因此要避免使用继承方式对实现类的影响，所以接口和抽象类都不能满足，而**trait**则成了最优选择。
+* **Linker**这个类定义在根命名空间，只有全静态的方法，是basement的核心所在。它用于注册和访问组件，注册的组件可以是上述**trait**名（也即标准组件），也可以是用户自定义的组件名。
 
 
-Basement的目的是让常用的php组件功能可以通用化使用，由一套**Trait**和一个叫**Linker**的类共同构成。
-例如当需要获得缓存时，只需一句 `Linker::ServerKV(true)->get($name)` 代码即可，而无需关注具体实现。
-其中Trait算是一套扩展了的接口，任何人都可以用其实现basement所要求的类和方法名。这些方法有严格的入参和出参约束，在依靠php语法无法约束的场景，或有一定的文字约束甚至逻辑代码用于提醒实现者严格按照接口标准书写类。这些类被实现后，并不需要用户去特意引入，只需要通过**Linker**这个类的静态方法进行调用即可。如ServerKV()这个方法实则是返回实现了KV服务器访问约束的类的实例
 
-
-# 具体用途如下：
-
+## 目的
 
 * 精准抽象和简单访问。大部分web开发具有大量重复的地方，对这些地方进行抽象并提供一套最简单的访问模式。
-
 * 统一规则和屏蔽区别。用相同的需求具有不同的实现，统一这些实现接口并将其特有的调用方式屏蔽掉，使其对开发者简单化、透明化。
+* 对组件的替换可以无缝进行。若某个组件出现问题，只需更改所注册的组件名。
+* 通用化组件。使得不同的组件可以在不同的程序上面以相同的方式调用。
 
-* 对组件的替换可以无缝进行，若某个组件出现问题，只需更改所注册的组件名。
 
-### Linker这个类
+## 使用方式
 
-顾名思义，该类相当于链接不同的功能方法，访问所有basement功能的，定义在根命名空间，无需繁琐的命名空间前缀。
+* 配置`composer.json` 或 `composer require basement/basement`。
+* 引入`boot.php`文件。
+* 使用`Linker::register(['Config(组件名)'=>'some_config_class(具体类名)'])`注册组件，即该方式注册了一个名为**Config**的组件，对应的类为**some_config_class**。
+* 使用`Linker::Config()`获得**some_config_class**类名，或使用`Linker::Config(true)`获得**some_config_class**实例。即使用**Linker**动态调用的静态方法皆为注册的组件名，形式为Linker::组件名()。
 
-```sh
-php composer.phar require "doctrine/instantiator:~1.0.3"
-```
 
-#注意：
-所有函数接口返回的内容应该是独立的，不受环境影响，如不应该受配置文件等的影响
-所有方法除返回布尔以外，失败或错误后都必须返回null。
-不能用false代替null！
+## 注意
+
+##### 调用注意
+*  **`boot.php`**文件一定要先于`composer的autoload.php`文件前引入。
+
+##### 实现注意
+* 所有函数接口返回的内容应该是独立的，不受环境或配置影响。
+* 所有方法除限定返回布尔变量的外，失败或错误后都必须返回**`null`**，不能用`false`代替！
+
+
+## 文档
+核心(class)
+
+* [Linker](docs/Linker.md)
+
+标准组件(trait)
+
+* [Config](docs/Config.md)
+* [Debug](docs/Debug.md)
+* [Event](docs/Event.md)
+* [Exception](docs/Exception.md)
+* [Lang](docs/Lang.md)
+* [Log](docs/Log.md)
+* [Request](docs/Request.md)
+* [ServerFile](docs/ServerFile.md)
+* [ServerKV](docs/ServerKV.md)
+* [ServerLocal](docs/ServerLocal.md)
+* [ServerQueue](docs/ServerQueue.md)
+* [ServerSQL](docs/ServerSQL.md)
+
+
+## 版权信息
+basement遵循[MIT LICENSE](LICENSE)开源协议
+
