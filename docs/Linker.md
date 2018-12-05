@@ -16,7 +16,7 @@ namepsace: `\`
 //注册程序运行期间可替换组件（一般组件）
 Linker::register([
 	'component_name_1' => 'class_or_instance_n',
-	... //形如['组件名'=>'类名或实例']
+	...                    //形如['组件名'=>'类名或实例']
 	'component_name_n' => 'class_or_instance_n',
 ]);
 
@@ -64,7 +64,7 @@ Linker::forceRemove('component_name'); //返回bool
 
 ## API
 
-#### 方法列表
+#### 列表
 ~~~php
 //访问标准组件的方法，方法名即为组件名，参数为是否返回实例
 public static function Config(bool $forInstance = false)
@@ -82,17 +82,17 @@ public static function ServerSQL(bool $forInstance = false)
 
 //其他
 public static function __callStatic(string $component_name, array $args)
-public static function register(array $components, bool $isCore = false)
-public static function exists(string $component)
-public static function getAll()
-public static function getBasements()
-public static function remove(string $component)
-public static function forceRemove(string $component)
+public static function register(array $components, bool $isCore = false): bool
+public static function exists(string $component): bool
+public static function getAll(): array
+public static function getBasements(): array
+public static function remove(string $component): bool
+public static function forceRemove(string $component): bool
 ~~~
 
 #### 详细说明
 
-**__callStatic()**: 动态访问组件
+**::__callStatic()**: 动态访问组件
 ```php
 params:
 	string $component_name 组件名
@@ -101,7 +101,7 @@ return:
 	string|object 类名或实例
 ```
 
-**register()**: 注册组件
+**::register()**: 注册组件
 ```php
 params:
 	array $components   注册的组件，形如['组件名' => '类名或实例']
@@ -110,7 +110,7 @@ return:
 	bool 是否注册成功
 ```
 
-**exists()**: 组件是否存在
+**::exists()**: 组件是否存在
 ```php
 params:
 	string $component_name 组件名
@@ -118,7 +118,7 @@ return:
 	bool 组件是否已注册
 ```
 
-**getAll()**: 获得所有已注册组件
+**::getAll()**: 获得所有已注册组件
 ```php
 params:
 	void
@@ -126,7 +126,7 @@ return:
 	array 所有已注册组件
 ```
 
-**getBasements()**: 获得标准组件名，即自带的所有trait名
+**::getBasements()**: 获得标准组件名，即自带的所有trait名
 ```php
 params:
 	void
@@ -134,7 +134,7 @@ return:
 	array 所有标准组件名
 ```
 
-**remove()**: 移除一般组件，若为核心组件则抛出异常
+**::remove()**: 移除一般组件，若为核心组件则抛出异常
 ```php
 params:
 	string $component_name 组件名
@@ -142,7 +142,7 @@ return:
 	bool 是否移除成功
 ```
 
-**forceRemove()**: 强行移除组件，包括核心组件
+**::forceRemove()**: 强行移除组件，包括核心组件
 ```php
 params:
 	string $component_name 组件名
