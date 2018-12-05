@@ -27,7 +27,7 @@ Linker::Event()::off('event_name'); //返回bool
 //事件是否绑定
 Linker::Event()::exists('event_name'); //返回bool
 
-//触发事件
+//触发事件，并以$param_1……$param_n传入事件入参
 Linker::Event()::trigger('event_name', $param_1, ... , $param_n); //绑定事件的返回值
 ~~~
 

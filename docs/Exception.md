@@ -23,8 +23,8 @@ Linker::Exception()::throw('message');
 Linker::Exception()::throw('message', $code, 'exception type', 'secondary message');
 
 //扩展的方法
-$Exception=Linker::Exception();
-$Exception=new $Exception('message', $code, 'exception type', 'secondary message');
+$Exception = Linker::Exception();
+$Exception = new $Exception('message', $code, 'exception type', 'secondary message');
 
 //获得异常类型
 $Exception->getType();
