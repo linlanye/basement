@@ -83,7 +83,7 @@ public static function ServerSQL(bool $forInstance = false)
 
 //其他
 public static function __callStatic(string $component_name, array $args)
-public static function register(array $array, bool $isCore = false)
+public static function register(array $components, bool $isCore = false)
 public static function exists(string $component)
 public static function getAll()
 public static function getBasements()
@@ -93,15 +93,20 @@ public static function forceRemove(string $component)
 
 #### 详细说明
 
-**__callStatic()**: 用于动态访问组件
+**__callStatic()**: 动态访问组件
 ```php
-@param1: string $component_name 组件名
-@param2: array  $args 		    只含一个bool参数，为是否返回实例，是则返回该组件的实例，否则返回该组件类名
-@return: string|object          类名或实例
+param1: string $component_name 组件名
+param2: array  $args           只含一个bool参数，为是否返回实例，是则返回该组件的实例，否则返回该组件类名
+return: string|object          类名或实例
 
-示例： Linker::component_name()获得类名。Linker::component_name(true)获得实例
+示例: Linker::component_name()获得类名，Linker::component_name(true)获得实例
 ```
 
-
+**register()**: 注册组件
+```php
+param1: array $component_name 注册的组件，形如['组件名' => '类名或实例']
+param2: bool  $isCore=false   是否为核心组件，是则不可被替换
+return: bool                  是否注册成功
+```
 
 
