@@ -66,7 +66,7 @@ public function getSize(): int
 #### 详细说明
 **属性**:
 ```php
-protected $__name='default' 当前日志名
+protected $__name = 'default'; 当前日志名
 ```
 
 **setName()**: 设置当前队列名

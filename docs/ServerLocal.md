@@ -70,7 +70,7 @@ public function getContents(string $fileName)
 #### 详细说明
 **属性**:
 ```php
-protected $__path='/' 当前文件夹路径
+protected $__path = '/'; 当前文件夹路径
 ```
 
 **isWritable()**: 文件是否可写

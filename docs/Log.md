@@ -66,7 +66,7 @@ public function emergency(string $content): bool
 #### 详细说明
 **属性**:
 ```php
-protected $__name='default' 当前日志名
+protected $__name = 'default'; 当前日志名
 ```
 
 

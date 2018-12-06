@@ -65,8 +65,8 @@ public static function throw(string $message, int $code = 1, string $type = '', 
 #### 详细说明
 **属性**:
 ```
-protected $__type = '' 当前异常类型，默认为空，兼容原生模式
-protected $__secondMessage = '' 当前异常次级信息，默认为空，兼容原生模式
+protected $__type = ''; 当前异常类型，默认为空，兼容原生模式
+protected $__secondMessage = ''; 当前异常次级信息，默认为空，兼容原生模式
 ```
 
 **__construct()**: 异常构造函数

@@ -90,9 +90,9 @@ protected static $__i18nLists=[
     'sb', 'sk', 'sl', 'sq', 'sr', 'sr', 'sv', 'sv-fi', 'sx', 'sz',
     'th', 'tn', 'tr', 'ts', 'uk', 'ur', 've', 'vi', 'xh', 'zh-cn',
     'zh-hk', 'zh-sg', 'zh-tw', 'zu',
-] 所有可书写的i18n名，为只读属性。调用i18n()方法传入的参数必须位于其中。
-protected $__label='default' 当前字符集标识名，用于标识不同的字符集。
-protected static $__i18n 全局唯一目标语言名，也即一次运行只能有一个目标映射语言类型。
+]; 所有可书写的i18n名，为只读属性。调用i18n()方法传入的参数必须位于其中。
+protected $__label='default'; 当前字符集标识名，用于标识不同的字符集。
+protected static $__i18n; 全局唯一目标语言名，也即一次运行只能有一个目标映射语言类型。
 ```
 
 **setLabel()**: 设置当前字符集标识名，用于区分不同的映射场景，如不同的开发者可使用不同的标识名来隔离自身语言包。
@@ -122,7 +122,8 @@ return:
 **autoload()**: 注册全局任一字符集的自动加载规则，用于简化字符集数据加载，并实现惰性加载。
 ```php
 params:
-    callable $callable 自动加载规则，为回调方式。入参为$this->__label和self::$__i18n，应实现传入标识和全局目标字符集后，返回该标识下的目标语言字符集。如使用php数组存储的语言包，其文件名形如label.i18n.php这种命名方式，则规则可如return include "$label.$i18n.php";
+    callable $callable 自动加载规则，为回调方式。入参为$this->__label和self::$__i18n，应实现传入标识和全局目标字符集后，返回该标识下的目标语言字符集。
+    如使用php数组存储的语言包，其文件名形如`label.i18n.php`这种命名方式，则规则可如`return include "$label.$i18n.php"`;
 return:
     bool 是否注册成功
 ```
