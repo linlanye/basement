@@ -1,7 +1,7 @@
 # trait Config
 namepsace: `basement`
 
-实现配置的读写功能
+用全静态方法实现配置的读写功能。使用一个配置名（string）对应一个配置（array）。
 
 ---
 

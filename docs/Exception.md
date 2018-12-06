@@ -1,7 +1,7 @@
 # trait Exception
 namepsace: `basement`
 
-对异常类的兼容性扩展，增加异常类型和异常次要信息，实现类需继承\Exception类
+对异常类的兼容性扩展，增加异常类型和异常次要信息，用于简化多个异常场景需要使用不同的异常类来标识的传统模式，以及改善异常信息对多语言不友好的情况。实现类需继承\Exception类。
 
 ---
 
@@ -41,25 +41,25 @@ $Exception->getSecondMessage();
 
 #### 列表
 ~~~php
-    protected $__type = '';
-    protected $__secondMessage = '';
-    public function __construct(string $message, int $code = 1, string $type = '', string $secondMessage = '')
-    {
-        $this->__type          = $type;
-        $this->__secondMessage = $secondMessage;
-        parent::__construct($message, $code);
-    }
-    public function getType(): string
-    {
-        return $this->__type;
-    }
-    public function getSecondMessage(): string
-    {
-        return $this->__secondMessage;
-    }
-    public static function throw(string $message, int $code = 1, string $type = '', string $secondMessage = '') {
-        throw new static($message, $code, $type, $secondMessage);
-    }
+protected $__type = '';
+protected $__secondMessage = '';
+public function __construct(string $message, int $code = 1, string $type = '', string $secondMessage = '')
+{
+    $this->__type          = $type;
+    $this->__secondMessage = $secondMessage;
+    parent::__construct($message, $code);
+}
+public function getType(): string
+{
+    return $this->__type;
+}
+public function getSecondMessage(): string
+{
+    return $this->__secondMessage;
+}
+public static function throw(string $message, int $code = 1, string $type = '', string $secondMessage = '') {
+    throw new static($message, $code, $type, $secondMessage);
+}
 ~~~
 
 #### 详细说明

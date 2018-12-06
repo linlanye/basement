@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2017-06-20 11:53:48
- * @Modified time:      2018-07-13 15:48:30
+ * @Modified time:      2018-12-06 10:54:40
  * @Description:        HTTP请求类规范。一次请求全局唯一，多个请求方法类型可以并存，但只有一个是当前
  *                     ，对请求中的某个方法携带的参数可以做读写
  */
@@ -54,6 +54,20 @@ trait Request
      * @return string 请求类型
      */
     public static function getMethod() : string
+    {}
+
+    /**
+     * 获取请求的域名
+     * @return string 域名
+     */
+    public static function getHost(): string
+    {}
+
+    /**
+     * 获取请求的端口
+     * @return int 端口地址
+     */
+    public static function getPort(): int
     {}
 
     /**
