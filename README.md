@@ -60,6 +60,10 @@ Basement的目的是让常用的php组件功能可以通用化使用，并且可
 * [ServerSQL](docs/ServerSQL.md)
 
 
+## 开发规范
+
+开发basement组件完成后，需通过basement的单元测试。
+
 ## 版权信息
 basement遵循[MIT LICENSE](LICENSE)开源协议
 

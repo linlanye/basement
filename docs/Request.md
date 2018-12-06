@@ -29,25 +29,25 @@ Linker::Request()::get('method'); //返回数组或null
 Linker::Request()::getCurrent(); //返回数组或null
 
 //获得当前请求方法
-Linker::Request()::getMethod(); //返回string
+Linker::Request()::getMethod(); //返回string或null
 
 //获得当前某个请求头
 Linker::Request()::getHeader('header'); //返回string或null
 
 //获得当前请求的域名
-Linker::Request()::getHost(); //返回string
+Linker::Request()::getHost(); //返回string或null
 
 //获得当前请求的端口
-Linker::Request()::getPort(); //返回int
+Linker::Request()::getPort(); //返回int或null
 
 //获得当前请求的相对url（不含query string）
-Linker::Request()::getURL(); //返回string
+Linker::Request()::getURL(); //返回string或null
 
 //获得当前请求协议
-Linker::Request()::getProtocol(); //返回string，如http或https等
+Linker::Request()::getProtocol(); //返回string或null
 
 //获得请求者的ip
-Linker::Request()::getIP(); //返回string
+Linker::Request()::getIP(); //返回string或null
 
 ~~~
 
@@ -64,12 +64,12 @@ public static function setCurrent(array $parameters): bool
 public static function get(string $method):  ? array
 public static function getCurrent() :  ? array
 public static function getHeader(string $header) :  ? string
-public static function getMethod() : string
-public static function getHost(): string
-public static function getPort(): int
-public static function getURL(): string
-public static function getProtocol(): string
-public static function getIP(): string
+public static function getMethod() :  ? string
+public static function getHost() :  ? string
+public static function getPort() :  ? int
+public static function getURL() :  ? string
+public static function getProtocol() :  ? string
+public static function getIP() :  ? string
 ~~~
 
 #### 详细说明
@@ -120,7 +120,7 @@ return:
 params:
 	void
 return:
-	string 请求方法名且应为大写，如POST，GET等
+	string|null 请求方法名且应为大写，如POST，GET等，无则返回null，如CLI模式下
 ```
 
 **::getHost()**: 获得当前请求的域名，应是完整的域名
@@ -128,7 +128,7 @@ return:
 params:
 	void
 return:
-	string 域名且应为小写
+	string|null 域名且应为小写，无则返回null，如CLI模式下
 ```
 
 **::getPort()**: 获得当前请求的端口
@@ -136,7 +136,7 @@ return:
 params:
 	void
 return:
-	int 端口号
+	int|null 端口号，无则返回null，如CLI模式下
 ```
 
 **::getURL()**: 获得当前请求的相对url，该url不应保护站点名称
@@ -144,7 +144,7 @@ return:
 params:
 	void
 return:
-	string 请求方法名，如POST，GET等
+	string|null 请求方法名，如POST，GET等，无则返回null，如CLI模式下
 ```
 
 **::getProtocol()**: 获得当前请求的协议
@@ -152,7 +152,7 @@ return:
 params:
 	void
 return:
-	string 请求方法名且应为大写，如HTTP，HTTPS等
+	string|null 请求方法名且应为大写，如HTTP，HTTPS等，无则返回null，如CLI模式下
 ```
 
 **::getIP()**: 获得当前发起请求的客户端IP
@@ -160,5 +160,5 @@ return:
 params:
 	void
 return:
-	string ip地址，若无法获取的情况，可以使用unknown替代
+	string|null ip地址，无则返回null，如CLI模式下
 ```

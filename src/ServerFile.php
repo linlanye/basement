@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2017-08-03 10:29:05
- * @Modified time:      2018-07-13 15:20:15
+ * @Modified time:      2018-12-06 11:41:46
  * @Description:        操作文件服务器类规范，对远程文件服务器上的文件进行操作
  */
 namespace basement;
@@ -52,7 +52,7 @@ trait ServerFile
     {}
 
     /**
-     * 获得目标文件最后修改时间
+     * 获得目标文件创建时间
      * @param  string $fileName 文件名
      * @return int|null         文件最后修改时间，错误或失败返回null
      */

@@ -52,7 +52,7 @@ public static function trigger(string $event, ...$params)
 params:
     string   $event    事件名
     callable $Callback 绑定事件的逻辑代码，用回调形式实现
-    int      $times=0  事件可执行的次数
+    int      $times=0  事件可执行的次数，0代表无穷次
 return:
     bool 是否成功
 ```

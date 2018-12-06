@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2017-06-20 11:53:48
- * @Modified time:      2018-12-06 10:54:40
+ * @Modified time:      2018-12-06 13:30:27
  * @Description:        HTTP请求类规范。一次请求全局唯一，多个请求方法类型可以并存，但只有一个是当前
  *                     ，对请求中的某个方法携带的参数可以做读写
  */
@@ -51,43 +51,43 @@ trait Request
 
     /**
      * 获取本次请求的类型
-     * @return string 请求类型
+     * @return string|null 请求类型，无则返回null
      */
-    public static function getMethod() : string
+    public static function getMethod() :  ? string
     {}
 
     /**
      * 获取请求的域名
-     * @return string 域名
+     * @return string|null 域名，无则返回null
      */
-    public static function getHost(): string
+    public static function getHost() :  ? string
     {}
 
     /**
      * 获取请求的端口
-     * @return int 端口地址
+     * @return int|null 端口地址，无则返回null
      */
-    public static function getPort(): int
+    public static function getPort() :  ? int
     {}
 
     /**
      * 获取本次请求的相对URL地址，不应含有不含query string
-     * @return string 请求的相对URL地址
+     * @return string|null 请求的相对URL地址，无则返回null
      */
-    public static function getURL(): string
+    public static function getURL() :  ? string
     {}
 
     /**
      * 获取本次请求的协议
-     * @return string 协议，如HTTP/1.1或HTTPS
+     * @return string|null 协议，如HTTP/1.1或HTTPS，无则返回null
      */
-    public static function getProtocol(): string
+    public static function getProtocol() :  ? string
     {}
 
     /**
      * 获取本次发起请求的客户端IP
-     * @return string 客户端IP
+     * @return string|null 客户端IP，无则返回null
      */
-    public static function getIP(): string
+    public static function getIP() :  ? string
     {}
 }
