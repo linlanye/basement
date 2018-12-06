@@ -54,8 +54,6 @@ Linker::getBasements(); //返回array
 //移除组件，核心组件则抛出异常
 Linker::remove('component_name'); //返回bool
 
-//强制移除组件，核心组件也可移除
-Linker::forceRemove('component_name'); //返回bool
 ~~~
 
 ---
@@ -87,7 +85,6 @@ public static function exists(string $component): bool
 public static function getAll(): array
 public static function getBasements(): array
 public static function remove(string $component): bool
-public static function forceRemove(string $component): bool
 ~~~
 
 #### 详细说明
@@ -134,14 +131,6 @@ return:
 ```
 
 **::remove()**: 移除一般组件，若为核心组件则抛出异常
-```php
-params:
-	string $component_name 组件名
-return:
-	bool 是否移除成功
-```
-
-**::forceRemove()**: 强行移除组件，包括核心组件
 ```php
 params:
 	string $component_name 组件名

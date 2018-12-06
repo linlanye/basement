@@ -1,0 +1,21 @@
+<phpunit bootstrap="tests/boot.php">
+	<php>
+		<env name="Config" value="" />
+		<env name="Debug" value="" />
+		<env name="Event" value="" />
+		<env name="Exception" value="" />
+		<env name="Lang" value="" />
+		<env name="Log" value="" />
+		<env name="Request" value="" />
+		<env name="ServerFile" value="" />
+		<env name="ServerKV" value="" />
+		<env name="ServerLocal" value="" />
+		<env name="ServerQueue" value="" />
+		<env name="ServerSQL" value="" />
+	</php>
+	<testsuites>
+		<testsuite name="lin">
+			<directory suffix="Test.php">tests/linker</directory>
+		</testsuite>
+	</testsuites>
+</phpunit>

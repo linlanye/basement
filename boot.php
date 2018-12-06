@@ -1,2 +1,2 @@
 <?php
-require_once __DIR__ . '/src/linker/Linker.php'; //引入Linker类
+require_once 'src/linker/Linker.php'; //引入Linker类

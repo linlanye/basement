@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2016-11-04 15:07:30
- * @Modified time:      2018-12-05 13:20:41
+ * @Modified time:      2018-12-06 17:25:05
  * @Description:        组件链接器，在根空间使用
  */
 class Linker
@@ -65,7 +65,10 @@ class Linker
     //动态加载自定义组件
     public static function __callStatic($method, $args)
     {
-        return self::get($method, $args);
+        if (empty($args)) {
+            return self::get($method);
+        }
+        return self::get($method, $args[0]);
     }
     /**
      * 注册组件
@@ -79,7 +82,7 @@ class Linker
         foreach ($array as $component => $class) {
             $component = strtoupper($component);
             if (array_key_exists($component, self::$lists) && self::$lists[$component][1]) {
-                throw new Exception($component . 'can not be overridden!'); //核心组件不可被替换
+                throw new Exception("$component can not be overridden!"); //核心组件不可被替换
             }
             self::$lists[$component] = [$class, $isCore]; //写入组件列表
         }
@@ -91,7 +94,7 @@ class Linker
         $component = strtoupper($component);
         return array_key_exists($component, self::$lists);
     }
-    //获取所有已注册组件
+    //获取所有已注册组件，形式为['组件名'=>[类名, 是否为核心组件], ...]
     public static function getAll(): array
     {
         return self::$lists;
@@ -118,17 +121,6 @@ class Linker
         }
         unset(self::$lists[$component]);
         return true;
-    }
-
-    //强行移除组件
-    public static function forceRemove(string $component): bool
-    {
-        $component = strtoupper($component);
-        if (array_key_exists($component, self::$lists)) {
-            unset(self::$lists[$component]);
-            return true;
-        }
-        return false;
     }
 
     /**

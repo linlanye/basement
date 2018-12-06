@@ -32,7 +32,8 @@ Basement的目的是让常用的php组件功能可以通用化使用，并且可
 ## 注意
 
 ##### 调用注意
-*  `boot.php`文件一定要先于`composer的autoload.php`文件前引入。
+* `boot.php`文件一定要先于`composer的autoload.php`文件前引入。
+* 组件名不区分大小写。
 
 ##### 实现注意
 * 所有函数接口返回的内容应该是独立的，不受环境或配置影响。
