@@ -1,7 +1,11 @@
 # trait Lang
 namepsace: `basement`
 
-实现多语言映射功能
+简化并实现多语言映射的常见功能。
+* 语言映射的数据格式需为Key-Value型，key为原始语言，value为目标语言。
+* 全局只有一个唯一的目标语言**i18n**，且只需设置一次。设置后，所有的映射语言都是这个目标语言。
+* 一个实例有一个标识，用于标记不同的场景或者不同的开发者，或者隔离不同的组件在语言包上的差异，确保同一个标识下的语言字符集具有封闭性。
+* 组件提供者无需关心全局语言，甚至可以不用提供语言映射数据，只需设置自己的标识名和映射字符即可；而组件使用者则只需指定目标语言和设置正确的自动加载机制即可，甚至可以自己管理所有的语言映射数据。
 
 ---
 
@@ -25,15 +29,17 @@ Linker::Lang()::autoload(function($label, $i18n){
     return $chars;
 });
 
+//获得实例
+$Lang = Linker::Lang(true);
 
-//解绑事件
-Linker::Event()::off('event_name'); //返回bool
+//设置字符集标识名
+$Lang->setLabel('label'); //返回bool
 
-//事件是否绑定
-Linker::Event()::exists('event_name'); //返回bool
+//获得字符集标识名
+$Lang->getLabel(); //string
 
-//触发事件，并以$param_1……$param_n传入事件入参
-Linker::Event()::trigger('event_name', $param_1, ... , $param_n); //绑定事件的返回值
+//获得目标i18n的映射字符
+$Lang->map('原始语言字符'); //返回string
 ~~~
 
 ---
@@ -44,45 +50,79 @@ Linker::Event()::trigger('event_name', $param_1, ... , $param_n); //绑定事件
 
 #### 列表
 ~~~php
-public static function on(string $event, callable $Callback, int $times = 0): bool
-public static function off(string $event): bool
-public static function exists(string $event): bool
-public static function trigger(string $event, ...$params)
+protected $__label = 'default';
+protected static $__i18n;
+public function setLabel(string $label): bool
+{
+    $this->__label = $label;
+    return true;
+}
+public function getLabel(): string
+{
+    return $this->__label;
+}
+public function map(string $chars): string
+public static function autoload(callable $callable): bool
+public static function i18n(string $i18n): bool
+{
+    if (in_array($i18n, self::$__i18nLists)) {
+        self::$__i18n = $i18n;
+        return true;
+    }
+    return false;
+}
 ~~~
 
 #### 详细说明
-
-**::on()**: 绑定事件
-```php
-params:
-    string   $event    事件名
-    callable $Callback 绑定事件的逻辑代码，用回调形式实现
-    int      $times=0  事件可执行的次数
-return:
-    bool 是否成功
+**属性**:
+```
+protected static $__i18nLists=[
+    'af', 'ar-ae', 'ar-bh', 'ar-dz', 'ar-eg', 'ar-iq', 'ar-jo', 'ar-kw', 'ar-lb', 'ar-ly',
+    'ar-ma', 'ar-om', 'ar-qa', 'ar-sa', 'ar-sy', 'ar-tn', 'ar-ye', 'be', 'bg', 'ca',
+    'cs', 'da', 'de', 'de-at', 'de-ch', 'de-li', 'de-lu', 'el', 'en',
+    'en-au', 'en-bz', 'en-ca', 'en-gb', 'en-ie', 'en-jm', 'en-nz', 'en-tt', 'en-us', 'en-za',
+    'es', 'es-ar', 'es-bo', 'es-cl', 'es-co', 'es-cr', 'es-do', 'es-ec', 'es-gt', 'es-hn',
+    'es-mx', 'es-ni', 'es-pa', 'es-pe', 'es-pr', 'es-py', 'es-sv', 'es-uy', 'es-ve', 'et',
+    'eu', 'fa', 'fi', 'fo', 'fr', 'fr-be', 'fr-ca', 'fr-ch', 'fr-lu', 'ga',
+    'gd', 'he', 'hi', 'hr', 'hu', 'id', 'is', 'it', 'it-ch', 'ja',
+    'ji', 'ko', 'ko', 'lt', 'lv', 'mk', 'ms', 'mt', 'nl', 'nl-be',
+    'no', 'no', 'pl', 'pt', 'pt-br', 'rm', 'ro', 'ro-mo', 'ru', 'ru-mo',
+    'sb', 'sk', 'sl', 'sq', 'sr', 'sr', 'sv', 'sv-fi', 'sx', 'sz',
+    'th', 'tn', 'tr', 'ts', 'uk', 'ur', 've', 'vi', 'xh', 'zh-cn',
+    'zh-hk', 'zh-sg', 'zh-tw', 'zu',
+] 所有可书写的i18n名，为只读属性。调用i18n()方法传入的参数必须位于其中。
+protected $__label='default' 当前字符集标识名，用于标识不同的字符集。
+protected static $__i18n 全局唯一目标语言名，也即一次运行只能有一个目标映射语言类型。
 ```
 
-**::off()**: 解绑事件
+**setLabel()**: 设置当前字符集标识名，用于区分不同的映射场景，如不同的开发者可使用不同的标识名来隔离自身语言包。
 ```php
 params:
-    string $event 事件名
+    string $label 标识名
 return:
-    bool 是否成功
+    bool 是否设置成功
 ```
 
-**::exists()**: 事件是否存在
+**getLabel()**: 获得当前字符集标识名
 ```php
 params:
-    string $event 事件名
+    void
 return:
-    bool 是否存在
+    string 标识名
 ```
 
-**::trigger()**: 触发事件，并可以使用不定参传入绑定事件的入参
+**map()**: 传入原字符获得目标语言的映射字符
 ```php
 params:
-    string $event  事件名
-    array  $params 触发该事件时的入参，用php不定参形式传入
+    string $chars 需要映射的原字符
 return:
-    mixed|null 绑定事件的返回值，失败或不存在则返回null
+    string 映射后的目标字符
+```
+
+**autoload()**: 注册全局任一字符集的自动加载规则，用于简化字符集数据加载，并实现惰性加载。
+```php
+params:
+    callable $callable 自动加载规则，为回调方式。入参为$this->__label和self::$__i18n，应实现传入标识和全局目标字符集后，返回该标识下的目标语言字符集。如使用php数组存储的语言包，其文件名形如label.i18n.php这种命名方式，则规则可如return include "$label.$i18n.php";
+return:
+    bool 是否注册成功
 ```
