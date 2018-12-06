@@ -13,12 +13,12 @@ namepsace: `basement`
 <?php
 //先注册
 Linker::register([
-	'Event' => 'your_event_class',
+    'Event' => 'your_event_class',
 ]);
 
 //绑定事件
 Linker::Event()::on('event_name', function(){
-	//事件执行代码
+    //事件执行代码
 }); //返回bool
 
 //解绑事件
@@ -50,34 +50,34 @@ public static function trigger(string $event, ...$params)
 **::on()**: 绑定事件
 ```php
 params:
-	string   $event    事件名
-	callable $Callback 绑定事件的逻辑代码，用回调形式实现
-	int      $times=0  事件可执行的次数
+    string   $event    事件名
+    callable $Callback 绑定事件的逻辑代码，用回调形式实现
+    int      $times=0  事件可执行的次数
 return:
-	bool 是否成功
+    bool 是否成功
 ```
 
 **::off()**: 解绑事件
 ```php
 params:
-	string $event 事件名
+    string $event 事件名
 return:
-	bool 是否成功
+    bool 是否成功
 ```
 
 **::exists()**: 事件是否存在
 ```php
 params:
-	string $event 事件名
+    string $event 事件名
 return:
-	bool 是否存在
+    bool 是否存在
 ```
 
 **::trigger()**: 触发事件，并可以使用不定参传入绑定事件的入参
 ```php
 params:
-	string $event  事件名
-	array  $params 触发该事件时的入参，用php不定参形式传入
+    string $event  事件名
+    array  $params 触发该事件时的入参，用php不定参形式传入
 return:
-	mixed|null 绑定事件的返回值，失败或不存在则返回null
+    mixed|null 绑定事件的返回值，失败或不存在则返回null
 ```

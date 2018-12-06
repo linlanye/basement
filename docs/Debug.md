@@ -13,7 +13,7 @@ namepsace: `basement`
 <?php
 //先注册
 Linker::register([
-	'Debug' => 'your_debug_class',
+    'Debug' => 'your_debug_class',
 ]);
 
 //获得实例
@@ -93,90 +93,90 @@ protected $__name='default' 当前调试的标识名称，用于区分不同的�
 **setName()**: 设置当前调试名
 ```php
 params:
-	string $name 调试名
+    string $name 调试名
 return:
-	bool 是否设置成功
+    bool 是否设置成功
 ```
 
 **getName()**: 获得当前调试名
 ```php
 params:
-	void
+    void
 return:
-	string 调试名
+    string 调试名
 ```
 
 **get()**: 获得某个key下的调试信息
 ```php
 params:
-	string $key 目标键名
+    string $key 目标键名
 return:
-	mixed|null 失败或不存在则返回null
+    mixed|null 失败或不存在则返回null
 ```
 
 **set()**: 设置某个key下的调试信息
 ```php
 params:
-	string $key  目标键名
-	array  $info 调试信息
+    string $key  目标键名
+    array  $info 调试信息
 return:
-	bool 是否设置成功
+    bool 是否设置成功
 ```
 
 **append()**: 往某个key的尾部最近调试信息，若key不为数组，则需自动处理成数组后加入
 ```php
 params:
-	string $key  目标键名
-	array  $info 调试信息
+    string $key  目标键名
+    array  $info 调试信息
 return:
-	bool 是否设置成功
+    bool 是否设置成功
 ```
 
 **setAll()**: 一次性设置所有的调试信息，若此前已存在信息，则会覆盖此前的信息
 ```php
 params:
-	array $data 所有调试信息
+    array $data 所有调试信息
 return:
-	bool 是否设置成功
+    bool 是否设置成功
 ```
 
 **getAll()**: 一次性获得所有的调试信息
 ```php
 params:
-	void
+    void
 return:
-	array|null 失败或不存在则返回null
+    array|null 失败或不存在则返回null
 ```
 
 **::dump()**: 打印变量，可使用不定参同时打印多个变量
 ```php
 params:
-	mixed $var         首个要打印的变量
-	array $moreArgs=[] 同时打印的多个变量，为php不定参的传入数组
+    mixed $var         首个要打印的变量
+    array $moreArgs=[] 同时打印的多个变量，为php不定参的传入数组
 return:
-	bool 是否打印成功
+    bool 是否打印成功
 ```
 
 **::beginFlag()**: 设立一个flag，用于收集位于beginFlag和endFlag方法之间的系统运行信息
 ```php
 params:
-	string $flag='default' 自定义的flag名
+    string $flag='default' 自定义的flag名
 return:
-	bool 是否设立成功
+    bool 是否设立成功
 ```
 
 **::endFlag()**: 结束一个flag，并收集位于beginFlag和endFlag方法之间的系统运行信息
 ```php
 params:
-	string $flag='default' 自定义的flag名
+    string $flag='default' 自定义的flag名
 return:
-	bool 是否结束成功
+    bool 是否结束成功
 ```
 
 **::getFlag()**: 获得一个flag里存储的系统运行信息
 ```php
 params:
-	string $flag='default' 自定义的flag名
+    string $flag='default' 自定义的flag名
 return:
-	mixed|null 失败或不存在则返回null
+    mixed|null 失败或不存在则返回null
 ```
