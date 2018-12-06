@@ -1,4 +1,4 @@
-# Basement
+# Basement/1.0
 [![Latest Stable Version](https://poser.pugx.org/basement/basement/v/stable)](https://packagist.org/packages/basement/basement)
 [![Latest Unstable Version](https://poser.pugx.org/basement/basement/v/unstable)](https://packagist.org/packages/basement/basement)
 
@@ -6,7 +6,7 @@
 
 ## 介绍
 
-Basement的目的是让常用的php组件功能可以通用化使用，并且可以实现程序解耦，是由一套**trait**和一个类**Linker**共同构成。
+Basement的目的是让web中常用的php组件功能可以通用化使用，并且可以实现程序解耦，是由一套**trait**和一个类**Linker**共同构成。
 
 * 这一套**trait**类似扩展了的接口，对最常用的类和方法进行了非常严格的规定，在依靠php语法无法约束的场景，会有一定的文字约束甚至逻辑代码用于提醒实现者严格按照规定实现类。用**trait**的原因是对有些方法需要用一定的代码约束，同时php是单继承，因此要避免使用继承方式对实现类的影响，所以接口和抽象类都不能满足，而**trait**则成了最优选择。
 * **Linker**这个类定义在根命名空间，只有全静态的方法，是basement的核心所在。它用于注册和访问组件，注册的组件可以是上述**trait**名（也即标准组件），也可以是用户自定义的组件名。

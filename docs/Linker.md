@@ -119,7 +119,7 @@ return:
 params:
 	void
 return:
-	array 所有已注册组件
+	array 所有已注册组件，形式如['组件1'=>['类名或实例', 'bool(是否为核心组件)'], ..., '']
 ```
 
 **::getBasements()**: 获得标准组件名，即自带的所有trait名

@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2018-12-06 15:53:59
- * @Modified time:      2018-12-06 17:32:54
+ * @Modified time:      2018-12-06 21:26:43
  * @Description:        测试Linker
  */
 
@@ -15,15 +15,6 @@ use PHPUnit\Framework\TestCase;
 
 class LinkerTest extends TestCase
 {
-    /**
-     * 测试访问未注册抛出异常
-     * @expectedException Exception
-     */
-    public function testNotRegistered()
-    {
-        $Component = md5(mt_rand());
-        Linker::$Component();
-    }
 
     //测试基础功能
     public function testCommon()
@@ -41,19 +32,103 @@ class LinkerTest extends TestCase
         $this->assertSame(Linker::$Component(), $class); //动态获得组件名
         $this->assertSame(Linker::getAll(), [strtoupper($Component) => [$class, false]]); //获取所有
 
+        //替换
+        $class2 = md5(mt_rand());
+        Linker::register([
+            $Component => $class2,
+        ]);
+        $this->assertSame(Linker::$Component(), $class2);
+
         //移除
         $this->assertTrue(Linker::remove($Component));
         $this->assertFalse(Linker::exists($Component));
         $this->assertSame(Linker::getAll(), []); //获取所有
     }
 
+    //测试basement自带组件
+    public function testBasementComponents()
+    {
+        //所有标准组件
+        Linker::register([
+            'ServerSQL'   => 'stdClass',
+            'ServerKV'    => 'stdClass',
+            'ServerLocal' => 'stdClass',
+            'ServerQueue' => 'stdClass',
+            'ServerFile'  => 'stdClass',
+            'Exception'   => 'stdClass',
+            'Log'         => 'stdClass',
+            'Debug'       => 'stdClass',
+            'Lang'        => 'stdClass',
+            'Request'     => 'stdClass',
+            'Config'      => 'stdClass',
+            'Event'       => 'stdClass',
+        ]);
+        $all      = array_flip(array_keys(Linker::getAll()));
+        $basement = array_flip(Linker::getBasements());
+        $basement = array_change_key_case($basement, CASE_UPPER);
+        sort($basement);
+        sort($all);
+        $this->assertSame($all, $basement);
+
+        //访问标准方法
+        $this->assertSame(Linker::Config(), 'stdClass');
+        $this->assertSame(Linker::Debug(), 'stdClass');
+        $this->assertSame(Linker::Event(), 'stdClass');
+        $this->assertSame(Linker::Exception(), 'stdClass');
+        $this->assertSame(Linker::Lang(), 'stdClass');
+        $this->assertSame(Linker::Log(), 'stdClass');
+        $this->assertSame(Linker::ServerFile(), 'stdClass');
+        $this->assertSame(Linker::ServerKV(), 'stdClass');
+        $this->assertSame(Linker::ServerLocal(), 'stdClass');
+        $this->assertSame(Linker::ServerQueue(), 'stdClass');
+        $this->assertSame(Linker::ServerSQL(), 'stdClass');
+
+        //返回对象
+        $this->assertSame(get_class(Linker::Config(true)), 'stdClass');
+        $this->assertSame(get_class(Linker::Debug(true)), 'stdClass');
+        $this->assertSame(get_class(Linker::Event(true)), 'stdClass');
+        $this->assertSame(get_class(Linker::Exception(true)), 'stdClass');
+        $this->assertSame(get_class(Linker::Lang(true)), 'stdClass');
+        $this->assertSame(get_class(Linker::Log(true)), 'stdClass');
+        $this->assertSame(get_class(Linker::ServerFile(true)), 'stdClass');
+        $this->assertSame(get_class(Linker::ServerKV(true)), 'stdClass');
+        $this->assertSame(get_class(Linker::ServerLocal(true)), 'stdClass');
+        $this->assertSame(get_class(Linker::ServerQueue(true)), 'stdClass');
+        $this->assertSame(get_class(Linker::ServerSQL(true)), 'stdClass');
+
+        Linker::remove('ServerSQL');
+        Linker::remove('ServerKV');
+        Linker::remove('ServerLocal');
+        Linker::remove('ServerQueue');
+        Linker::remove('ServerFile');
+        Linker::remove('Exception');
+        Linker::remove('Log');
+        Linker::remove('Debug');
+        Linker::remove('Lang');
+        Linker::remove('Request');
+        Linker::remove('Config');
+        Linker::remove('Event');
+
+        $this->assertSame(Linker::getAll(), []);
+    }
+
+    /**
+     * 测试访问未注册抛出异常
+     * @expectedException Exception
+     */
+    public function testRegistereException1()
+    {
+        $Component = md5(mt_rand());
+        Linker::$Component();
+    }
+
     /**
      * 测试注册核心组件，普通移除抛出异常
      * @expectedException Exception
      */
-    public function testRegisterCore()
+    public function testRegistereException2()
     {
-        $Component = md5(mt_rand());
+        $Component = 'testLinker_adgi1829';
         $class     = md5(mt_rand());
         Linker::register([
             $Component => $class,
@@ -66,58 +141,16 @@ class LinkerTest extends TestCase
         $this->assertTrue(Linker::remove($Component));
     }
 
-    //常规测试
-    public function testGeneral()
+    /**
+     * 测试重复注册核心组件，抛出异常
+     * @expectedException Exception
+     */
+    public function testRegistereException3()
     {
-        //所有标准组件
-        $basement = [
-            'Config', 'Debug', 'Event', 'Exception', 'Lang', 'Log', 'Request',
-            'ServerFile', 'ServerKV', 'ServerLocal', 'ServerQueue', 'ServerSQL',
-        ];
+        $Component = 'testLinker_adgi1829';
         Linker::register([
-            'ServerSQL'   => 'stdclass',
-            'ServerKV'    => 'stdclass',
-            'ServerLocal' => 'stdclass',
-            'ServerQueue' => 'stdclass',
-            'Exception'   => 'stdclass',
-            'Log'         => 'stdclass',
-            'Debug'       => 'stdclass',
-            'Lang'        => 'stdclass',
-            'Config'      => 'stdclass',
-            'Request'     => 'stdclass',
-            'Event'       => 'stdclass',
+            $Component => '',
         ]);
-
-        $all = array_keys(Linker::getAll());
-        sort($all);
-        sort($basement);
-        $this->assertSame($all, $basement);
-
-        //访问标准方法
-        $this->assertSame(Linker::Config(), 'stdclass');
-        $this->assertSame(Linker::Debug(), 'stdclass');
-        $this->assertSame(Linker::Event(), 'stdclass');
-        $this->assertSame(Linker::Exception(), 'stdclass');
-        $this->assertSame(Linker::Lang(), 'stdclass');
-        $this->assertSame(Linker::Log(), 'stdclass');
-        $this->assertSame(Linker::ServerFile(), 'stdclass');
-        $this->assertSame(Linker::ServerKV(), 'stdclass');
-        $this->assertSame(Linker::ServerLocal(), 'stdclass');
-        $this->assertSame(Linker::ServerQueue(), 'stdclass');
-        $this->assertSame(Linker::ServerSQL(), 'stdclass');
-
-        //返回对象
-        $this->assertSame(get_class(Linker::Config(true)), 'stdclass');
-        $this->assertSame(get_class(Linker::Debug(true)), 'stdclass');
-        $this->assertSame(get_class(Linker::Event(true)), 'stdclass');
-        $this->assertSame(get_class(Linker::Exception(true)), 'stdclass');
-        $this->assertSame(get_class(Linker::Lang(true)), 'stdclass');
-        $this->assertSame(get_class(Linker::Log(true)), 'stdclass');
-        $this->assertSame(get_class(Linker::ServerFile(true)), 'stdclass');
-        $this->assertSame(get_class(Linker::ServerKV(true)), 'stdclass');
-        $this->assertSame(get_class(Linker::ServerLocal(true)), 'stdclass');
-        $this->assertSame(get_class(Linker::ServerQueue(true)), 'stdclass');
-        $this->assertSame(get_class(Linker::ServerSQL(true)), 'stdclass');
 
     }
 }
