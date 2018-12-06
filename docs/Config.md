@@ -13,7 +13,7 @@ namepsace: `basement`
 <?php
 //先注册
 Linker::register([
-	'Config' => 'your_config_class',
+    'Config' => 'your_config_class',
 ]);
 
 //设置
@@ -50,34 +50,34 @@ public static function replace(string $name, array $content, bool $isRecursive =
 **::get()**: 获得配置
 ```php
 params:
-	string $name 配置名
+    string $name 配置名
 return:
-	array|null 失败或不存在则返回null
+    array|null 失败或不存在则返回null
 ```
 
 **::set()**: 设置配置
 ```php
 params:
-	string $name    配置名
-	array  $content 配置内容
+    string $name    配置名
+    array  $content 配置内容
 return:
-	bool 是否设置成功
+    bool 是否设置成功
 ```
 
 **::exists()**: 配置是否存在
 ```php
 params:
-	string $name 配置名
+    string $name 配置名
 return:
-	bool 是否存在
+    bool 是否存在
 ```
 
 **::replace()**: 替换配置
 ```php
 params:
-	string $name              配置名
-	array  $content           用于替换的新的配置内容
-	bool   $isRecursive=false 是否递归替换，替换模式参考array_replace和array_replace_recursive函数
+    string $name              配置名
+    array  $content           用于替换的新的配置内容
+    bool   $isRecursive=false 是否递归替换，替换模式参考array_replace和array_replace_recursive函数
 return:
-	bool 是否替换成功
+    bool 是否替换成功
 ```

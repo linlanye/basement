@@ -13,7 +13,7 @@ namepsace: `basement`
 <?php
 //先注册
 Linker::register([
-	'Exception' => 'your_exception_class',
+    'Exception' => 'your_exception_class',
 ]);
 
 //基本抛出方式
@@ -72,33 +72,33 @@ protected $__secondMessage = '' 当前异常次级信息，默认为空，兼容
 **__construct()**: 异常构造函数
 ```php
 params:
-	string $message          异常信息
-	int    $code=1,          异常代码
-	string $type=''          异常类型
-	string $secondMessage='' 异常次级信息
+    string $message          异常信息
+    int    $code=1,          异常代码
+    string $type=''          异常类型
+    string $secondMessage='' 异常次级信息
 ```
 
 **getType()**: 获得异常类型
 ```php
 params:
-	void
+    void
 return:
-	string 异常类型
+    string 异常类型
 ```
 
 **getSecondMessage()**: 获得异常次级信息
 ```php
 params:
-	void
+    void
 return:
-	string 异常次级信息
+    string 异常次级信息
 ```
 
 **::throw()**: 用静态方法抛出自身，前两个参数兼容原生模式
 ```php
 params:
-	string $message          异常信息
-	int    $code=1,          异常代码
-	string $type=''          异常类型
-	string $secondMessage='' 异常次级信息
+    string $message          异常信息
+    int    $code=1,          异常代码
+    string $type=''          异常类型
+    string $secondMessage='' 异常次级信息
 ```
