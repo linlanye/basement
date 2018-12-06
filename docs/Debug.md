@@ -84,7 +84,6 @@ public static function getFlag(string $flag = 'default')
 ~~~
 
 #### 详细说明
-
 **属性**:
 ```
 protected $__name='default' 当前调试的标识名称，用于区分不同的调试场景

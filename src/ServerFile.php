@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2017-08-03 10:29:05
- * @Modified time:      2018-12-06 11:41:46
+ * @Modified time:      2018-12-06 14:40:02
  * @Description:        操作文件服务器类规范，对远程文件服务器上的文件进行操作
  */
 namespace basement;
@@ -62,9 +62,9 @@ trait ServerFile
     /**
      * 获得目标文件大小
      * @param  string $fileName 文件名
-     * @return int              文件大小，失败、无、空等返回0
+     * @return int              文件大小，错误或失败返回null
      */
-    public function getSize(string $fileName) : int
+    public function getSize(string $fileName) :  ? int
     {}
 
     /**
@@ -72,7 +72,7 @@ trait ServerFile
      * @param  string $fileName 文件名
      * @return bool             文件是否存在
      */
-    public function exists(string $fileName): bool
+    public function exists(string $fileName) : bool
     {}
 
     /**

@@ -47,7 +47,6 @@ public static function replace(string $name, array $content, bool $isRecursive =
 ~~~
 
 #### 详细说明
-
 **::get()**: 获得配置
 ```php
 params:

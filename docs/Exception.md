@@ -63,7 +63,6 @@ public static function throw(string $message, int $code = 1, string $type = '', 
 ~~~
 
 #### 详细说明
-
 **属性**:
 ```
 protected $__type = '' 当前异常类型，默认为空，兼容原生模式

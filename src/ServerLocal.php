@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2017-08-03 10:29:05
- * @Modified time:      2018-07-13 15:20:21
+ * @Modified time:      2018-12-06 14:49:07
  * @Description:        操作本地文件类规范，若对文件夹进行操作，文件名可传入空字符
  */
 namespace basement;
@@ -62,9 +62,9 @@ trait ServerLocal
     /**
      * 获得目标文件大小
      * @param  string $fileName 文件名
-     * @return int              文件大小，失败、无、空等返回0
+     * @return int              文件大小，错误或失败返回null
      */
-    public function getSize(string $fileName) : int
+    public function getSize(string $fileName) :  ? int
     {}
 
     /**
@@ -72,7 +72,7 @@ trait ServerLocal
      * @param  string $fileName 文件名
      * @return bool             文件是否存在
      */
-    public function exists(string $fileName): bool
+    public function exists(string $fileName) : bool
     {}
 
     /**

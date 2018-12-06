@@ -91,7 +91,6 @@ public static function forceRemove(string $component): bool
 ~~~
 
 #### 详细说明
-
 **::__callStatic()**: 动态访问组件
 ```php
 params:

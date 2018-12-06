@@ -17,7 +17,7 @@ Linker::register([
 ]);
 
 //获得实例
-$Log=Linker::Log(true);
+$Log = Linker::Log(true);
 
 //设置当前日志名
 $Log->setName('log_name'); //返回bool
@@ -64,7 +64,6 @@ public function emergency(string $content): bool
 ~~~
 
 #### 详细说明
-
 **属性**:
 ```php
 protected $__name='default' 当前日志名

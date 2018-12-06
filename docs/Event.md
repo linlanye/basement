@@ -46,13 +46,12 @@ public static function trigger(string $event, ...$params)
 ~~~
 
 #### 详细说明
-
 **::on()**: 绑定事件
 ```php
 params:
     string   $event    事件名
     callable $Callback 绑定事件的逻辑代码，用回调形式实现
-    int      $times=0  事件可执行的次数，0代表无穷次
+    int      $times=0  事件可执行的次数，默认0为不限制
 return:
     bool 是否成功
 ```
