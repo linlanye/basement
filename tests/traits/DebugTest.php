@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2018-12-07 09:01:07
- * @Modified time:      2018-12-07 15:02:51
+ * @Modified time:      2018-12-07 20:42:39
  * @Description:        对Debug组件进行测试
  */
 namespace basement\tests;
@@ -13,20 +13,9 @@ use PHPUnit\Framework\TestCase;
 
 class DebugTest extends TestCase
 {
-
-    public function testRun()
-    {
-        $this->doMethodName();
-        $this->doMethodSetGetAppend();
-        $this->doMethodDump();
-        $this->doMethodFlag();
-    }
-
     //测试调试名设置
-    private function doMethodName()
+    public function testName()
     {
-        echo 'Debug: setName(), getName().' . PHP_EOL;
-
         $Debug = Linker::Debug(true);
         $name  = 'basement_test_' . md5(mt_rand());
         $this->assertTrue($Debug->setName($name));
@@ -34,10 +23,8 @@ class DebugTest extends TestCase
     }
 
     //测试读写
-    private function doMethodSetGetAppend()
+    public function testSetGetAppend()
     {
-        echo 'Debug: set(), get(), append(), setAll(), getAll().' . PHP_EOL;
-
         $Debug = Linker::Debug(true);
         $name  = 'basement_test_' . md5(mt_rand());
         $Debug->setName($name);
@@ -74,10 +61,8 @@ class DebugTest extends TestCase
     }
 
     //测试打印
-    private function doMethodDump()
+    public function testDump()
     {
-        echo 'Debug: dump().' . PHP_EOL;
-
         $var1 = 'basement_var_' . md5(mt_rand());
         $var2 = 'basement_var_' . md5(mt_rand());
         $var3 = 'basement_var_' . md5(mt_rand());
@@ -92,10 +77,8 @@ class DebugTest extends TestCase
     }
 
     //测试flag
-    private function doMethodFlag()
+    public function testFlag()
     {
-        echo 'Debug: beginFlag(), endFlag(), getFlag().' . PHP_EOL;
-
         $name = 'basement_test_' . md5(mt_rand());
 
         $this->assertNull(Linker::Debug()::getFlag($name)); //未开始

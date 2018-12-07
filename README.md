@@ -62,8 +62,8 @@ Basement的目的是让web中常用的php组件功能可以通用化使用，并
 
 ## 组件开发
 
-开发basement标准组件完成后，需通过basement的单元测试，拷贝basement-phpunit.xml文件到项目根目录，配置待测试的内容即可。
-其余扩展组件则安自己的方案测试。
+开发basement标准组件完成后，除了Server系列组件外，都需通过basement的单元测试，拷贝basement-phpunit.xml文件到项目根目录，配置待测试的内容即可。
+Server系列组件由于牵扯数据交互，由开发者自行测试。
 
 ## 版权信息
 * 作者：林澜叶(linlanye)

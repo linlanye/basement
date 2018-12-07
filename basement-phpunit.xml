@@ -29,11 +29,7 @@
 			<file>tests/traits/ExceptionTest.php</file>
 			<file>tests/traits/LangTest.php</file>
 			<file>tests/traits/LogTest.php</file>
-			<file>tests/traits/ServerFileTest.php</file>
-			<file>tests/traits/ServerKVTest.php</file>
-			<file>tests/traits/ServerLocalTest.php</file>
-			<file>tests/traits/ServerQueueTest.php</file>
-			<file>tests/traits/ServerSQLTest.php</file>
+			<file>tests/traits/RequestTest.php</file>
 		</testsuite>
 	</testsuites>
 </phpunit>

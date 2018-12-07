@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2017-06-20 11:53:48
- * @Modified time:      2018-07-13 15:19:57
+ * @Modified time:      2018-12-07 20:31:37
  * @Description:        对异常类的兼容性扩展，增加异常类型和异常补充信息，宿主类需继承\Exception类
  */
 namespace basement;
@@ -57,10 +57,10 @@ trait Exception
 
     /**
      * 封装throw语句，抛出自身
-     * @param  string      $message       异常信息
-     * @param  int|integer $code          异常代码
-     * @param  string $type           异常类型,用于标识异常的种类，类似于使用异常类名标识异常一样
-     * @param  string $secondMessage  补充信息,可用于主信息一致，但带有变量消息的情况
+     * @param  string $message       异常信息
+     * @param  int    $code          异常代码
+     * @param  string $type          异常类型,用于标识异常的种类，类似于使用异常类名标识异常一样
+     * @param  string $secondMessage 补充信息,可用于主信息一致，但带有变量消息的情况
      * @return void
      */
     public static function throw(string $message, int $code = 1, string $type = '', string $secondMessage = '') {
