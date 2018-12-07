@@ -1,6 +1,6 @@
 {
     "name": "basement/basement",
-    "description": "php常用web功能组件通用化",
+    "description": "php常用web组件通用化、解耦化",
     "keywords": [
         "basement",
         "general",
@@ -31,7 +31,6 @@
         ]
     },
     "config": {
-        "preferred-install": "dist",
         "optimize-autoloader": true
     }
 }

@@ -23,13 +23,13 @@
 	</php>
 	<testsuites>
 		<testsuite name="basement">
-			<file>tests/traits/ConfigTest.php</file>
-			<file>tests/traits/DebugTest.php</file>
-			<file>tests/traits/EventTest.php</file>
-			<file>tests/traits/ExceptionTest.php</file>
-			<file>tests/traits/LangTest.php</file>
-			<file>tests/traits/LogTest.php</file>
-			<file>tests/traits/RequestTest.php</file>
+			<file>vendor/basement/basement/tests/traits/ConfigTest.php</file>
+			<file>vendor/basement/basement/tests/traits/DebugTest.php</file>
+			<file>vendor/basement/basement/tests/traits/EventTest.php</file>
+			<file>vendor/basement/basement/tests/traits/ExceptionTest.php</file>
+			<file>vendor/basement/basement/tests/traits/LangTest.php</file>
+			<file>vendor/basement/basement/tests/traits/LogTest.php</file>
+			<file>vendor/basement/basement/tests/traits/RequestTest.php</file>
 		</testsuite>
 	</testsuites>
 </phpunit>
