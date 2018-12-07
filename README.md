@@ -24,7 +24,6 @@ Basement的目的是让web中常用的php组件功能可以通用化使用，并
 ## 使用方式
 
 * 配置`composer.json` 或 `composer require basement/basement`。
-* 引入`boot.php`文件。
 * 使用`Linker::register(['Config(组件名)'=>'some_config_class(具体类名)'])`注册组件，即该方式注册了一个名为**Config**的组件，对应的类为**some_config_class**。
 * 使用`Linker::Config()`获得**some_config_class**类名，或使用`Linker::Config(true)`获得**some_config_class**实例。即使用**Linker**动态调用的静态方法皆为注册的组件名，形式为Linker::组件名()。
 
@@ -32,12 +31,12 @@ Basement的目的是让web中常用的php组件功能可以通用化使用，并
 ## 注意
 
 ##### 调用注意
-* `boot.php`文件一定要先于`composer的autoload.php`文件前引入。
+* 找不到Linker类的错误，可手动加载`boot.php`文件。
 * 组件名不区分大小写。
 
 ##### 实现注意
 * 所有函数接口返回的内容应该是独立的，不受环境或配置影响。
-* 所有方法除限定返回布尔变量的外，失败或错误后都必须返回`null`，不能用`false`代替！
+* 所有方法除限定返回布尔变量的外，失败或错误或无等情况都必须返回`null`，不能用`false`代替！
 
 
 ## 文档
@@ -63,8 +62,9 @@ Basement的目的是让web中常用的php组件功能可以通用化使用，并
 
 ## 开发规范
 
-开发basement组件完成后，需通过basement的单元测试。
+开发basement标准组件完成后，需通过basement的单元测试，只需调用[Linker::test()](docs/Linker.md)方法即可测试。建议单独对basement组件进行测试（如另起一个测试脚本），避免`Linker::test()`留下的一些全局数据会污染后续的其它测试。
 
 ## 版权信息
-basement遵循[MIT LICENSE](LICENSE)开源协议
+* 作者：林澜叶(linlanye)
+* 开源协议：[MIT LICENSE](LICENSE)
 

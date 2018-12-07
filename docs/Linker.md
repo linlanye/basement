@@ -56,6 +56,17 @@ Linker::remove('component_name'); //返回bool
 
 ~~~
 
+4.开发测试
+
+~~~php
+//开发basement标准组件，需调用下述方法提供单元测试，建议单独使用一个脚本进行测试。
+Linker::test([
+	'Config' => 'component',
+	...	//任意basement标准组件
+	'ServerSQL' => 'component',
+]);
+~~~
+
 ---
 
 
@@ -85,6 +96,7 @@ public static function exists(string $component): bool
 public static function getAll(): array
 public static function getBasements(): array
 public static function remove(string $component): bool
+public static function test(array $components)
 ~~~
 
 #### 详细说明
@@ -136,4 +148,10 @@ params:
 	string $component_name 组件名
 return:
 	bool 是否移除成功
+```
+
+**::test()**: 用于测试开发的标准组件是否满足basement的要求，依赖于phpunit组件。该方法会产生全局数据，即便已用随机字符标识，产生碰撞的概率极小，但可能对用于统计或计数的测试代码有所污染，建议单独书写成一个脚本进行测试。
+```php
+params:
+	array $components 待测试的basement标准组件，格式同register()方法一致
 ```

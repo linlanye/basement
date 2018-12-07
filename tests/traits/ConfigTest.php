@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2018-12-07 09:01:07
- * @Modified time:      2018-12-07 10:56:59
+ * @Modified time:      2018-12-07 13:43:35
  * @Description:        对Config组件进行测试
  */
 namespace basement\tests;
@@ -23,8 +23,9 @@ class ConfigTest extends TestCase
     //测试设置、读取、判断存在
     private function doMethodSetGetExists()
     {
-        echo 'test Config with method: set(), get(), exists().' . PHP_EOL;
-        $name = md5(mt_rand());
+        echo 'Config: set(), get(), exists().' . PHP_EOL;
+
+        $name = 'basement_test_' . md5(mt_rand());
         $data = [md5(mt_rand())];
 
         //未设置前判断
@@ -43,8 +44,9 @@ class ConfigTest extends TestCase
     //测试替换
     private function doMethodReplace()
     {
-        echo 'test Config with method: replace().' . PHP_EOL;
-        $name         = md5(mt_rand());
+        echo 'Config: replace().' . PHP_EOL;
+
+        $name         = 'basement_test_' . md5(mt_rand());
         $key1         = md5(mt_rand());
         $key2         = md5(mt_rand());
         $v1           = md5(mt_rand());

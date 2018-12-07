@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2017-06-20 11:53:48
- * @Modified time:      2018-07-13 15:20:06
+ * @Modified time:      2018-12-07 14:16:52
  * @Description:        语言映射类规范，通过注册全局自动映射规则，将任一字符集映射为全局唯一目标语言
  */
 namespace basement;
@@ -34,7 +34,7 @@ trait Lang
      * 当前字符集的标识名
      * @var string
      */
-    protected $__label = 'default';
+    protected $__name = 'default';
 
     /**
      * 全局唯一目标语言名，一次生命期只能有一个目标语言，所有字符集都映射为该语言
@@ -44,12 +44,12 @@ trait Lang
 
     /**
      * 设置当前字符集的标示名，用于确定唯一一个源字符集
-     * @param string $label 当前字符集标示名
+     * @param  string $name 当前字符集标示名
      * @return bool         是否设置成功
      */
-    public function setLabel(string $label): bool
+    public function setName(string $name): bool
     {
-        $this->__label = $label;
+        $this->__name = $name;
         return true;
     }
 
@@ -57,9 +57,9 @@ trait Lang
      * 获取当前字符集的标识名
      * @return string 当前字符集的标识名
      */
-    public function getLabel(): string
+    public function getName(): string
     {
-        return $this->__label;
+        return $this->__name;
     }
 
     /**
@@ -86,7 +86,7 @@ trait Lang
 
     /**
      * 注册全局任一字符集的自动映射规则
-     * @param  callable  $callable 自动映射规则，入参为当前标示名$this->__label，当前目标语言名self::__i18n
+     * @param  callable  $callable 自动映射规则，入参为当前标示名$this->__name，当前目标语言名self::__i18n
      * @return bool                是否注册成功
      */
     public static function autoload(callable $callable): bool

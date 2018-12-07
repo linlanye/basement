@@ -4,7 +4,7 @@ namepsace: `basement`
 简化并实现多语言映射的常见功能。
 * 语言映射的数据格式需为Key-Value型，key为原始语言，value为目标语言。
 * 全局只有一个唯一的目标语言**i18n**，且只需设置一次。设置后，所有的映射语言都是这个目标语言。
-* 一个实例有一个标识，用于标记不同的场景或者不同的开发者，或者隔离不同的组件在语言包上的差异，确保同一个标识下的语言字符集具有封闭性。
+* 一个实例有一个标识名（语言包名），用于标记不同的场景或者不同的开发者，或者隔离不同的组件在语言包上的差异，确保同一个标识下的语言字符集具有封闭性。
 * 组件提供者无需关心全局语言，甚至可以不用提供语言映射数据，只需设置自己的标识名和映射字符即可；而组件使用者则只需指定目标语言和设置正确的自动加载机制即可，甚至可以自己管理所有的语言映射数据。
 
 ---
@@ -24,7 +24,7 @@ Linker::register([
 Linker::Lang()::i18n('en'); //返回bool
 
 //注册全局任一字符集的映射规则，入参为字符集标识和全局目标语言名
-Linker::Lang()::autoload(function($label, $i18n){
+Linker::Lang()::autoload(function($name, $i18n){
     //映射逻辑
     return $chars;
 });
@@ -33,10 +33,10 @@ Linker::Lang()::autoload(function($label, $i18n){
 $Lang = Linker::Lang(true);
 
 //设置字符集标识名
-$Lang->setLabel('label'); //返回bool
+$Lang->setName('name'); //返回bool
 
 //获得字符集标识名
-$Lang->getLabel(); //string
+$Lang->getName(); //string
 
 //获得目标i18n的映射字符
 $Lang->map('原始语言字符'); //返回string
@@ -50,16 +50,16 @@ $Lang->map('原始语言字符'); //返回string
 
 #### 列表
 ~~~php
-protected $__label = 'default';
+protected $__name = 'default';
 protected static $__i18n;
-public function setLabel(string $label): bool
+public function setName(string $name): bool
 {
-    $this->__label = $label;
+    $this->__name = $name;
     return true;
 }
-public function getLabel(): string
+public function getName(): string
 {
-    return $this->__label;
+    return $this->__name;
 }
 public function map(string $chars): string
 public static function autoload(callable $callable): bool
@@ -91,19 +91,19 @@ protected static $__i18nLists=[
     'th', 'tn', 'tr', 'ts', 'uk', 'ur', 've', 'vi', 'xh', 'zh-cn',
     'zh-hk', 'zh-sg', 'zh-tw', 'zu',
 ]; 所有可书写的i18n名，为只读属性。调用i18n()方法传入的参数必须位于其中。
-protected $__label='default'; 当前字符集标识名，用于标识不同的字符集。
+protected $__name='default'; 当前字符集标识名，用于标识不同的字符集。
 protected static $__i18n; 全局唯一目标语言名，也即一次运行只能有一个目标映射语言类型。
 ```
 
-**setLabel()**: 设置当前字符集标识名，用于区分不同的映射场景，如不同的开发者可使用不同的标识名来隔离自身语言包。
+**setName()**: 设置当前字符集标识名，用于区分不同的映射场景，如不同的开发者可使用不同的标识名来隔离自身语言包。
 ```php
 params:
-    string $label 标识名
+    string $name 标识名
 return:
     bool 是否设置成功
 ```
 
-**getLabel()**: 获得当前字符集标识名
+**getName()**: 获得当前字符集标识名
 ```php
 params:
     void
@@ -122,8 +122,8 @@ return:
 **autoload()**: 注册全局任一字符集的自动加载规则，用于简化字符集数据加载，并实现惰性加载。
 ```php
 params:
-    callable $callable 自动加载规则，为回调方式。入参为$this->__label和self::$__i18n，应实现传入标识和全局目标字符集后，返回该标识下的目标语言字符集。
-    如使用php数组存储的语言包，其文件名形如`label.i18n.php`这种命名方式，则规则可如`return include "$label.$i18n.php"`;
+    callable $callable 自动加载规则，为回调方式。入参为$this->__name和self::$__i18n，应实现传入标识和全局目标字符集后，返回该标识下的目标语言字符集。
+    如使用php数组存储的语言包，其文件名形如`name.i18n.php`这种命名方式，则规则可如`return include "$name.$i18n.php"`;
 return:
     bool 是否注册成功
 ```

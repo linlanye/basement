@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2016-11-04 15:07:30
- * @Modified time:      2018-12-07 11:26:48
+ * @Modified time:      2018-12-07 13:14:04
  * @Description:        组件链接器，在根空间使用
  */
 class Linker
@@ -126,7 +126,6 @@ class Linker
     /**
      * 用于测试标准组件是否满足basement要求
      * @param  array  $components 待测试的组件
-     * @return void
      */
     public static function test(array $components)
     {
@@ -137,6 +136,7 @@ class Linker
         $check = array_change_key_case(array_flip($basements), CASE_UPPER);
         $dir   = dirname(dirname(__DIR__)) . '/tests/traits/';
 
+        echo PHP_EOL . '=========testing basement components!=========' . PHP_EOL;
         foreach ($components as $component => $class) {
             if (!isset($check[strtoupper($component)])) {
                 echo "$component is not a basement built-in component, so skipped!" . PHP_EOL;
@@ -152,6 +152,7 @@ class Linker
             $Test = (new $Test)->testRun();
             Linker::remove($component);
         }
+        echo '===================success!===================' . PHP_EOL . PHP_EOL;
     }
 
     /**
