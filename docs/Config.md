@@ -72,7 +72,7 @@ return:
     bool 是否存在
 ```
 
-**::replace()**: 替换配置
+**::replace()**: 替换配置内容，当配置内容不存在时，应等效于`set()`
 ```php
 params:
     string $name              配置名

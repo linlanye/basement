@@ -25,7 +25,10 @@
     "autoload": {
         "psr-4": {
             "basement\\": "src"
-        }
+        },
+        "files":[
+            "boot.php"
+        ]
     },
     "config": {
         "preferred-install": "dist",

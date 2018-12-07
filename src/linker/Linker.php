@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2016-11-04 15:07:30
- * @Modified time:      2018-12-06 17:25:05
+ * @Modified time:      2018-12-07 11:26:48
  * @Description:        组件链接器，在根空间使用
  */
 class Linker
@@ -121,6 +121,37 @@ class Linker
         }
         unset(self::$lists[$component]);
         return true;
+    }
+
+    /**
+     * 用于测试标准组件是否满足basement要求
+     * @param  array  $components 待测试的组件
+     * @return void
+     */
+    public static function test(array $components)
+    {
+        $basements = [
+            'Config', 'Debug', 'Event', 'Exception', 'Lang', 'Log', 'Request',
+            'ServerFile', 'ServerKV', 'ServerLocal', 'ServerQueue', 'ServerSQL',
+        ];
+        $check = array_change_key_case(array_flip($basements), CASE_UPPER);
+        $dir   = dirname(dirname(__DIR__)) . '/tests/traits/';
+
+        foreach ($components as $component => $class) {
+            if (!isset($check[strtoupper($component)])) {
+                echo "$component is not a basement built-in component, so skipped!" . PHP_EOL;
+                continue;
+            }
+            if (!is_string($class)) {
+                throw new Exception("class name must be string!");
+            }
+            //执行测试
+            require_once "$dir${component}Test.php";
+            Linker::register([$component => $class]);
+            $Test = "basement\\tests\\${component}Test";
+            $Test = (new $Test)->testRun();
+            Linker::remove($component);
+        }
     }
 
     /**
