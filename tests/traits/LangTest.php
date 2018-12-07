@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2018-12-07 09:01:07
- * @Modified time:      2018-12-07 20:48:46
+ * @Modified time:      2018-12-07 22:04:23
  * @Description:        对Lang组件进行测试
  */
 namespace basement\tests;
@@ -29,7 +29,7 @@ class LangTest extends TestCase
 
         //注册自动加载
         $r = Linker::Lang()::autoload(function ($name, $i18n) use ($chars) {
-            return [$chars => [$name, $i18n]];
+            return [$chars => $name . $i18n];
         });
         $this->assertTrue($r);
 
@@ -41,6 +41,6 @@ class LangTest extends TestCase
         $Lang->setName($name);
 
         //映射测试
-        $this->assertSame($Lang->map($chars), [$name, 'zh-cn']);
+        $this->assertSame($Lang->map($chars), $name . 'zh-cn');
     }
 }
