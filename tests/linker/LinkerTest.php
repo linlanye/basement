@@ -3,11 +3,13 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2018-12-06 15:53:59
- * @Modified time:      2018-12-06 21:26:43
+ * @Modified time:      2018-12-07 15:52:13
  * @Description:        测试Linker
  */
 
 namespace basement\tests;
+
+require dirname(dirname(__DIR__)) . '/boot.php'; //引入Linker类
 
 use Exception;
 use Linker;

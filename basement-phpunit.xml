@@ -1,0 +1,39 @@
+<!--
+开发basement标准组件需单独测试。
+	1.拷贝此文件到项目根目录
+	2.在env中填入需要注册的组件
+	3.在testsuite里面选择要测试的组件文件
+	4.运行phpunit
+-->
+
+<phpunit bootstrap="vendor/basement/basement/tests/boot-test.php">
+	<php>
+		<env name="Config" value=""/>
+		<env name="Debug" value=""/>
+		<env name="Event" value=""/>
+		<env name="Exception" value=""/>
+		<env name="Lang" value=""/>
+		<env name="Log" value=""/>
+		<env name="Request" value=""/>
+		<env name="ServerFile" value=""/>
+		<env name="ServerKV" value=""/>
+		<env name="ServerLocal" value=""/>
+		<env name="ServerQueue" value=""/>
+		<env name="ServerSQL" value=""/>
+	</php>
+	<testsuites>
+		<testsuite name="basement">
+			<file>tests/traits/ConfigTest.php</file>
+			<file>tests/traits/DebugTest.php</file>
+			<file>tests/traits/EventTest.php</file>
+			<file>tests/traits/ExceptionTest.php</file>
+			<file>tests/traits/LangTest.php</file>
+			<file>tests/traits/LogTest.php</file>
+			<file>tests/traits/ServerFileTest.php</file>
+			<file>tests/traits/ServerKVTest.php</file>
+			<file>tests/traits/ServerLocalTest.php</file>
+			<file>tests/traits/ServerQueueTest.php</file>
+			<file>tests/traits/ServerSQLTest.php</file>
+		</testsuite>
+	</testsuites>
+</phpunit>

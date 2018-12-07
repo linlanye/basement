@@ -1,7 +1,0 @@
-<phpunit bootstrap="tests/boot.php">
-	<testsuites>
-		<testsuite name="onlyLinker">
-			<directory suffix="Test.php">tests/linker</directory>
-		</testsuite>
-	</testsuites>
-</phpunit>

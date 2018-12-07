@@ -60,9 +60,10 @@ Basement的目的是让web中常用的php组件功能可以通用化使用，并
 * [ServerSQL](docs/ServerSQL.md)
 
 
-## 开发规范
+## 组件开发
 
-开发basement标准组件完成后，需通过basement的单元测试，只需调用[Linker::test()](docs/Linker.md)方法即可测试。建议单独对basement组件进行测试（如另起一个测试脚本），避免`Linker::test()`留下的一些全局数据会污染后续的其它测试。
+开发basement标准组件完成后，需通过basement的单元测试，拷贝basement-phpunit.xml文件到项目根目录，配置待测试的内容即可。
+其余扩展组件则安自己的方案测试。
 
 ## 版权信息
 * 作者：林澜叶(linlanye)

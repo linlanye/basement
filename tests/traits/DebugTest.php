@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2018-12-07 09:01:07
- * @Modified time:      2018-12-07 14:11:37
+ * @Modified time:      2018-12-07 15:02:51
  * @Description:        对Debug组件进行测试
  */
 namespace basement\tests;
@@ -83,7 +83,7 @@ class DebugTest extends TestCase
         $var3 = 'basement_var_' . md5(mt_rand());
 
         ob_start();
-        Debug::dump($var1, $var2, $var3);
+        Linker::Debug()::dump($var1, $var2, $var3);
         $content = ob_get_clean();
 
         $this->assertRegExp("/$var1/", $content);
@@ -98,14 +98,14 @@ class DebugTest extends TestCase
 
         $name = 'basement_test_' . md5(mt_rand());
 
-        $this->assertNull(Debug::getFlag($name)); //未开始
+        $this->assertNull(Linker::Debug()::getFlag($name)); //未开始
 
-        $this->assertTrue(Debug::beginFlag($name));
+        $this->assertTrue(Linker::Debug()::beginFlag($name));
         //模拟执行的代码
         for ($i = 0; $i < 100000; $i++) {
         }
-        $this->assertTrue(Debug::endFlag($name));
+        $this->assertTrue(Linker::Debug()::endFlag($name));
 
-        $this->assertFalse(empty(Debug::getFlag($name))); //收集完毕后存在信息
+        $this->assertFalse(empty(Linker::Debug()::getFlag($name))); //收集完毕后存在信息
     }
 }
