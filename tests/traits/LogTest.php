@@ -3,8 +3,8 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2018-12-07 09:01:07
- * @Modified time:      2018-12-07 21:12:31
- * @Description:        对Log组件进行测试，对8个psr-3方法和record方法都不做测试，避免有异步或远程日志组件无法测试的情况。
+ * @Modified time:      2018-12-07 21:35:34
+ * @Description:        对Log组件进行测试，对8个psr-3方法和record方法都不做具体测试，避免有异步或远程日志组件无法测试的情况。
  */
 namespace basement\tests;
 
@@ -22,4 +22,18 @@ class LogTest extends TestCase
         $this->assertSame($Log->getName(), $name);
     }
 
+    //只测试9个写方法是否存在
+    public function testRecord()
+    {
+        $Log = Linker::Log(true);
+        $this->assertTrue(method_exists($Log, 'record'));
+        $this->assertTrue(method_exists($Log, 'debug'));
+        $this->assertTrue(method_exists($Log, 'info'));
+        $this->assertTrue(method_exists($Log, 'notice'));
+        $this->assertTrue(method_exists($Log, 'warning'));
+        $this->assertTrue(method_exists($Log, 'error'));
+        $this->assertTrue(method_exists($Log, 'critical'));
+        $this->assertTrue(method_exists($Log, 'alert'));
+        $this->assertTrue(method_exists($Log, 'emergency'));
+    }
 }
