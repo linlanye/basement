@@ -1,6 +1,7 @@
 # Basement/1.0
 [![Latest Stable Version](https://poser.pugx.org/basement/basement/v/stable)](https://packagist.org/packages/basement/basement)
 [![Total Downloads](https://poser.pugx.org/basement/basement/downloads)](https://packagist.org/packages/basement/basement)
+[![PHP Version](https://img.shields.io/badge/php-%3E%3D7.2-8892BF.svg)](http://www.php.net/)
 [![License](https://poser.pugx.org/basement/basement/license)](https://packagist.org/packages/basement/basement)
 > requires `php>=7.2` and `composer`
 
@@ -39,7 +40,7 @@ composer require basement/basement 1.0
 ```
 
 
-## 使用方式
+## 使用
 
 * 使用`Linker::register(['Config(组件名)'=>'some_config_class(具体类名)'])`注册组件，即该方式注册了一个名为**Config**的组件，对应的类为**some_config_class**。
 * 使用`Linker::Config()`获得**some_config_class**类名，或使用`Linker::Config(true)`获得**some_config_class**实例。即使用**Linker**动态调用的静态方法皆为注册的组件名，形式为Linker::组件名()。
