@@ -1,7 +1,7 @@
 # Basement/1.0
 [![Latest Stable Version](https://poser.pugx.org/basement/basement/v/stable)](https://packagist.org/packages/basement/basement)
-[![Latest Unstable Version](https://poser.pugx.org/basement/basement/v/unstable)](https://packagist.org/packages/basement/basement)
-
+[![Total Downloads](https://poser.pugx.org/basement/basement/downloads)](https://packagist.org/packages/basement/basement)
+[![License](https://poser.pugx.org/basement/basement/license)](https://packagist.org/packages/basement/basement)
 > requires `php>=7.2` and `composer`
 
 ## 介绍
@@ -81,6 +81,11 @@ composer require basement/basement 1.0
 
 开发basement标准组件完成后，除了Server系列组件外，都需通过basement的单元测试，拷贝basement-phpunit.xml文件到项目根目录，配置待测试的内容即可。
 Server系列组件由于牵扯数据交互，由开发者自行测试。
+
+
+## 捐赠
+![捐赠](denote.jpg)
+
 
 ## 版权信息
 * 作者：林澜叶(linlanye)
