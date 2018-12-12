@@ -153,7 +153,7 @@ return:
 **read()**: 读文件
 ```php
 params:
-    string $fileName     文件名
+    string $fileName 文件名
     string $mode='a' 读模式，默认以'r'模式读
 return:
     string|null 文件内容，失败或错误返回null
