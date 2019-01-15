@@ -24,26 +24,28 @@ Basement的目的是让web中常用的php组件功能可以通用化使用，并
 
 ## 安装
 
-* 1.composer方式
+* 1.composer方式（推荐）
 ```
-配置composer.json文件
+配置composer.json文件并执行 composer install
 "require": {
     "basement/basement": "1.0.*@stable"
 }
-或
+或命令行键入
 composer require basement/basement 1.0
 ```
 
-* 2.下载方式
+* 2.源码方式
 ```
-下载后，require "boot.php";
+<?php
+//下载源码后，在php文件中引入
+require "boot.php";
 ```
 
 
 ## 使用
 
 * 使用`Linker::register(['Config(组件名)'=>'some_config_class(具体类名)'])`注册组件，即该方式注册了一个名为**Config**的组件，对应的类为**some_config_class**。
-* 使用`Linker::Config()`获得**some_config_class**类名，或使用`Linker::Config(true)`获得**some_config_class**实例。即使用**Linker**动态调用的静态方法皆为注册的组件名，形式为Linker::组件名()。
+* 使用`Linker::Config()`获得**some_config_class**类名，或使用`Linker::Config(true)`获得**some_config_class**实例。即使用`Linker`类动态调用的静态方法皆为注册的组件名，形式为`Linker::组件名()`。
 
 
 ## 注意
@@ -89,5 +91,6 @@ Server系列组件由于牵扯数据交互，由开发者自行测试。
 
 ## 版权信息
 * 作者：林澜叶(linlanye)
+* Email：linlanye@sina.cn
 * 开源协议：[MIT LICENSE](LICENSE)
 
