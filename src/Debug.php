@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2017-07-06 13:54:12
- * @Modified time:      2018-07-13 15:39:04
+ * @Modified time:      2019-01-16 14:30:13
  * @Description:        调试类规范，用于收集调试或系统信息
  */
 namespace basement;
@@ -54,7 +54,7 @@ trait Debug
     {}
 
     /**
-     * 在当前标识名下，在目标键中的末尾追加信息
+     * 在当前标识名下，对目标键中的末尾追加信息
      * @param  string $key  目标键名
      * @param  mixed  $info 追加的信息内容
      * @return bool         是否追加成功

@@ -64,7 +64,7 @@ return:
 params:
     string $key    键名
     mixed  $value  键值
-    int    $life=0 键值有效期，默认0为不限制
+    int    $life=0 键的生命期，默认0为不限制
 return:
     bool 是否成功
 ```

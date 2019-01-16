@@ -3,7 +3,7 @@
  * @Author:             林澜叶(linlanye)
  * @Contact:            <linlanye@sina.cn>
  * @Date:               2017-08-03 10:29:05
- * @Modified time:      2018-12-06 14:49:07
+ * @Modified time:      2019-01-16 16:04:36
  * @Description:        操作本地文件类规范，若对文件夹进行操作，文件名可传入空字符
  */
 namespace basement;
@@ -125,7 +125,10 @@ trait ServerLocal
      */
     public function getContents(string $fileName)
     {
-        $r = @include $this->__path . $fileName;
+        if (!file_exists($this->__path . $fileName)) {
+            return null;
+        }
+        $r = include $this->__path . $fileName;
         return $r === false ? null : $r;
     }
 }

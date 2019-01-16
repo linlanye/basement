@@ -1,7 +1,7 @@
 # trait Log
 namepsace: `basement`
 
-实现日志记录功能，兼容psr-3。
+实现日志记录功能，一个实例拥有一个日志名，在该日志名下进行内容操作。兼容psr-3。
 
 ---
 
@@ -27,7 +27,7 @@ $Log->getName(); //返回string
 
 //psr-3方式
 $Log->info('content'); //返回bool
-... //8个日志等级，参加psr-3
+...                    //8个日志等级，参见psr-3
 $Log->alert('content');
 
 //自定义日志类型

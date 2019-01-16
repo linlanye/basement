@@ -1,7 +1,7 @@
 # trait Exception
 namepsace: `basement`
 
-对异常类的兼容性扩展，增加异常类型和异常次要信息，用于简化多个异常场景需要使用不同的异常类来标识的传统模式，以及改善异常信息对多语言不友好的情况。实现类需继承\Exception类。
+对异常类的兼容性扩展，增加异常类型和异常次要信息，用于简化多个异常场景需要使用不同的异常类来标识的传统模式，以及改善异常信息中带有变量情况对多语言不友好的情况。实现的宿主类还需继承\Exception类。
 
 ---
 
@@ -19,10 +19,10 @@ Linker::register([
 //基本抛出方式
 Linker::Exception()::throw('message');
 
-//扩展了抛出方式，后两个参数为异常类型和异常次级信息
+//扩展的抛出方式，后两个参数为异常类型和异常次级信息
 Linker::Exception()::throw('message', $code, 'exception type', 'secondary message');
 
-//扩展的方法
+//传统抛出方式+异常类型+次级信息
 $Exception = Linker::Exception();
 $Exception = new $Exception('message', $code, 'exception type', 'secondary message');
 

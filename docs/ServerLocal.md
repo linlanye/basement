@@ -1,7 +1,7 @@
 # trait ServerLocal
 namepsace: `basement`
 
-实现对本地文件的常见操作功能，使用方法参考[ServerFile](ServerFile.md)。与访问远程文件服务器的ServerFile相比：
+实现对本地文件的常见操作功能，使用方法参考[ServerFile](ServerFile.md)。与访问远程文件服务器相比：
 
 * 少了`upload()`和`download()`方法.
 * 多了`isWritebale(), isReadable(), getContents()`三个方法。
@@ -62,7 +62,10 @@ public function isWritable(string $fileName) : bool
 public function isReadable(string $fileName): bool
 public function getContents(string $fileName)
 {
-    $r = @include $this->__path . $fileName;
+    if (!file_exists($this->__path . $fileName)) {
+        return null;
+    }
+    $r = include $this->__path . $fileName;
     return $r === false ? null : $r;
 }
 ~~~

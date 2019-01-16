@@ -1,7 +1,9 @@
 # trait ServerFile
 namepsace: `basement`
 
-实现对远程文件服务器的常见读写访问。需要设置目录路径后，对该目录里的文件进行读写，如此可省去文件名的路径前缀。对于目录情况，应能兼容处理。
+实现对远程文件服务器的常见读写访问。需要设置目录路径后，对该目录里的文件进行读写，如此可省去文件名的路径前缀。
+
+注意：除文件读写外，对于目录情况也应能兼容处理。
 
 ---
 
@@ -52,7 +54,7 @@ $Server->read('file', $mode); //返回string或null
 //上传本地文件到服务器
 $Server->upload('local_file', 'server_file'); //返回bool
 
-//下次服务器文件到本地
+//下载服务器文件到本地
 $Server->download('server_file', 'local_file'); //返回bool
 ~~~
 
@@ -135,7 +137,7 @@ return:
 **remove()**: 删除文件
 ```php
 params:
-    string $fileName 文件名，对目录也可以处理
+    string $fileName 文件名，对目录也可以处理，建议非空目录不予删除
 return:
     bool 是否成功
 ```
@@ -159,7 +161,7 @@ return:
     string|null 文件内容，失败或错误返回null
 ```
 
-**upload()**: 上次本地文件到服务器
+**upload()**: 上传本地文件到服务器
 ```php
 params:
     string $localFile  欲上传的本地文件，对目录也可以处理

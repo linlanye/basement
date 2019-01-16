@@ -1,7 +1,9 @@
 # trait Request
 namepsace: `basement`
 
-用全静态方法实现HTTP请求（接受非发送）功能。全局只有唯一一次请求，应使用全局容器存储参数数据。可携带多个请求方法类型以及对应的参数，但“当前方法”唯一，可以读写任何方法携带的任何参数。注意：请求方法和协议名称应全为大写，请求的主域名应全为小写，需兼容CLI下的调用。
+用全静态方法实现HTTP请求（接受非发送）功能。全局只有唯一一次请求，应使用全局容器存储参数数据。一个请求可携带多个不同方法类型以及其对应的参数，但“当前请求方法”唯一，可以读写任何方法携带的任何参数。
+
+注意：请求方法和协议名称应全为大写，请求的主域名应全为小写，并需兼容CLI下的调用。
 
 ---
 
@@ -119,15 +121,15 @@ return:
 params:
 	void
 return:
-	string|null 请求方法名且应为大写，如POST，GET等，无则返回null，如CLI模式下
+	string|null 请求方法名应为大写，如POST、GET等。无则返回null，如CLI模式下
 ```
 
-**::getHost()**: 获得当前请求的域名，应是完整的域名
+**::getHost()**: 获得当前请求的主域名，应是完整的域名
 ```php
 params:
 	void
 return:
-	string|null 域名且应为小写，无则返回null，如CLI模式下
+	string|null 域名应为小写，无则返回null，如CLI模式下
 ```
 
 **::getPort()**: 获得当前请求的端口
@@ -138,12 +140,12 @@ return:
 	int|null 端口号，无则返回null，如CLI模式下
 ```
 
-**::getURL()**: 获得当前请求的相对url，该url不应保护站点名称
+**::getURL()**: 获得当前请求的相对url，该url不应包含`getHost()`中返回的部分，也即不含域名部分
 ```php
 params:
 	void
 return:
-	string|null 请求方法名，如POST，GET等，无则返回null，如CLI模式下
+	string|null 相对url，无则返回null，如CLI模式下
 ```
 
 **::getProtocol()**: 获得当前请求的协议
@@ -151,10 +153,10 @@ return:
 params:
 	void
 return:
-	string|null 请求方法名且应为大写，如HTTP，HTTPS等，无则返回null，如CLI模式下
+	string|null 协议应为大写，如HTTP/1.1，HTTPS等。无则返回null，如CLI模式下
 ```
 
-**::getIP()**: 获得当前发起请求的客户端IP
+**::getIP()**: 获得当前客户端IP
 ```php
 params:
 	void

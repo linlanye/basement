@@ -1,7 +1,7 @@
 # trait Event
 namepsace: `basement`
 
-实现配置的读写功能
+实现事件或钩子功能
 
 ---
 
@@ -76,7 +76,7 @@ return:
 ```php
 params:
     string $event  事件名
-    array  $params 触发该事件时的入参，用php不定参形式传入
+    array  $params 触发该事件时传入绑定的回调函数的入参，用php不定参形式传入
 return:
-    mixed|null 绑定事件的返回值，失败或不存在则返回null
+    mixed|null 绑定事件的回调函数的返回值，失败或不存在则返回null
 ```

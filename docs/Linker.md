@@ -15,13 +15,13 @@ namepsace: `\`
 <?php
 //注册程序运行期间可替换组件（一般组件）
 Linker::register([
-	'component_name_1' => 'class_or_instance_n',
+	'component_name_1' => 'classname_or_instance',
 	...                    //形如['组件名'=>'类名或实例']
-	'component_name_n' => 'class_or_instance_n',
+	'component_name_n' => 'classname_or_instance',
 ]);
 
 //注册不可替换组件（核心组件）
-Linker::register([...], true); //将第二个参数设为true
+Linker::register([...], true); //同上，仅将第二个参数设为true
 ~~~
 
 
@@ -46,7 +46,7 @@ Linker::component_name(true);
 Linker::exists('component_name'); //返回bool
 
 //获得已注册组件
-Linker::getAll(); //返回array
+Linker::getAll(); //返回array，形如['组件名'=>['注册的类名或实例', 是否为核心组件]]
 
 //获取标准组件名称，即自带的trait
 Linker::getBasements(); //返回array
